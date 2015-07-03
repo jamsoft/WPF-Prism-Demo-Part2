@@ -23,11 +23,9 @@ namespace JamSoft.CALDemo.Modules.ToolBar
     using JamSoft.CALDemo.Modules.ToolBar.Core;
 
     using Microsoft.Practices.Prism.Commands;
-    using Microsoft.Practices.Prism.PubSubEvents;
-    using Microsoft.Practices.Unity;
 
     /// <summary>
-    /// 
+    /// The toolbar presentation model
     /// </summary>
     public class ToolBarPresentationModel : IToolBarPresentationModel, INotifyPropertyChanged
     {
