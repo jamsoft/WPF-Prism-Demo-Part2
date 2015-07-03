@@ -1,0 +1,116 @@
+﻿<UserControl 
+    x:Class="JamSoft.CALDemo.Modules.MusicSearch.MusicSearchView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    HorizontalAlignment="Stretch" 
+    VerticalAlignment="Stretch">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="110" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.Row="0" 
+                    HorizontalAlignment="Left" 
+                    Grid.RowSpan="1" 
+                    Grid.Column="0" 
+                    Grid.ColumnSpan="1" >
+            <Label Content="Type the artist name in the box below:" 
+                   HorizontalAlignment="Left" 
+                   Margin="0" 
+                   Padding="0" 
+                   Foreground="{DynamicResource DefaultText}" />
+            
+            <TextBox x:Name="txtbArtistToSearchFor" 
+                     Background="{DynamicResource AppBackground}"
+                     Width="250" 
+                     Margin="0,5,0,5" 
+                     HorizontalAlignment="Left"
+                     Style="{DynamicResource JamSoftTextBoxStyle}"
+                     Text="{Binding ArtistSearchTerm, Mode=TwoWay}" />
+            
+            <Button x:Name="btnPerformArtistSearch" 
+                    Content="Get Artists" 
+                    HorizontalAlignment="Left"
+                    Style="{DynamicResource JamSoftButtonStyle}"
+                    Command="{Binding SearchForArtistCommand}" />
+        </StackPanel>
+        
+        <Grid Grid.Row="1" 
+              Grid.RowSpan="1" 
+              Grid.Column="0" 
+              Grid.ColumnSpan="1">
+        	<Grid.RowDefinitions>
+        		<RowDefinition Height="25"/>
+        		<RowDefinition Height="*"/>
+        	</Grid.RowDefinitions>
+            <Label Content="Artists" 
+                   Foreground="{DynamicResource DefaultText}" 
+                   Grid.RowSpan="1" />
+            <ListBox x:Name="lstbArtists" 
+                     ItemsSource="{Binding Artists}"
+                     SelectedValue="{Binding SelectedArtist, Mode=TwoWay}"
+                     Style="{DynamicResource JamSoftListBoxStyle}"
+                     DisplayMemberPath="Name" 
+                     Grid.RowSpan="1" 
+                     Grid.Row="1" />
+        </Grid>
+        
+        <StackPanel Grid.Row="0" 
+                    HorizontalAlignment="Left" 
+                    Grid.RowSpan="1" 
+                    Grid.Column="1" 
+                    Grid.ColumnSpan="1">
+            
+            <TextBlock Text="Name:" 
+                       Foreground="{DynamicResource DefaultText}" />
+            
+            <TextBox x:Name="SelectedArtistName" 
+                     IsReadOnly="True"
+                     Margin="0,5,0,5"
+                     Style="{DynamicResource JamSoftTextBoxStyle}" 
+                     Text="{Binding Path=SelectedItem.Name, ElementName=lstbArtists, Mode=OneWay}" />
+
+            <TextBlock Text="Id:" 
+                       Foreground="{DynamicResource DefaultText}" />
+            
+            <TextBox x:Name="SelectedArtistId" 
+                     IsReadOnly="True"
+                     Margin="0,5,0,5"
+                     Width="250"
+                     Style="{DynamicResource JamSoftTextBoxStyle}" 
+                     Text="{Binding Path=SelectedItem.Id, ElementName=lstbArtists, Mode=OneWay}" />
+
+            <Button x:Name="btnPerformArtistReleaseSearch" 
+                    Content="Get Releases" 
+                    HorizontalAlignment="Left"
+                    Margin="0"
+                    Style="{DynamicResource JamSoftButtonStyle}"
+                    Command="{Binding SearchForArtistReleasesCommand}" />
+        </StackPanel>
+
+        <Grid Grid.Row="1" 
+              Grid.RowSpan="1" 
+              Grid.Column="1" 
+              Grid.ColumnSpan="1">
+        	<Grid.RowDefinitions>
+        		<RowDefinition Height="25"/>
+        		<RowDefinition Height="*"/>
+        	</Grid.RowDefinitions>
+            <Label Content="Releases" 
+                   Foreground="{DynamicResource DefaultText}" 
+                   Grid.RowSpan="1" />
+            <ListBox x:Name="lstbReleases" 
+                     ItemsSource="{Binding Releases}"
+                     Style="{DynamicResource JamSoftListBoxStyle}"
+                     DisplayMemberPath="Title" 
+                     Grid.RowSpan="1" 
+                     Grid.Row="1" />
+        </Grid>
+
+    </Grid>
+</UserControl>

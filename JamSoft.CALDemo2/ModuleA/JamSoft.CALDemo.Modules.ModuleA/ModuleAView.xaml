@@ -1,0 +1,9 @@
+﻿<UserControl
+    x:Class="JamSoft.CALDemo.Modules.ModuleA.ModuleAView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    >
+    <Grid>
+        <TextBlock Text="I AM MODULE A" FontFamily="Verdana" Foreground="{DynamicResource DefaultText}" />
+    </Grid>
+</UserControl>

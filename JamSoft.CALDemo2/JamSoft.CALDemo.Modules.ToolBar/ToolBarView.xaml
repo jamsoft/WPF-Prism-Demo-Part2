@@ -1,0 +1,30 @@
+﻿<UserControl 
+    x:Class="JamSoft.CALDemo.Modules.ToolBar.ToolBarView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    HorizontalAlignment="Right"
+    VerticalAlignment="Stretch">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="32" />
+            <ColumnDefinition Width="150" />
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel x:Name="DynamicToolsPanel"
+                    Grid.Column="1" 
+                    Grid.ColumnSpan="2" 
+                    Style="{DynamicResource ToolBarStackPanel}">
+            
+            <Button Style="{DynamicResource JamSoftShutDownButton}" 
+                    Margin="0,2,5,0" 
+                    Command="{Binding CloseApplicationCommand}" />
+            
+        </StackPanel>
+        
+        <!--<StackPanel  
+                    Grid.Column="0" 
+                    Grid.ColumnSpan="1" 
+                     />-->
+        
+    </Grid>
+</UserControl>

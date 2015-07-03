@@ -1,0 +1,90 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- The Main Spplication Background Colour -->
+    <SolidColorBrush x:Key="AppBackground" Color="#FF434343"/>
+    
+    <!-- Application Default Text Colour -->
+    <SolidColorBrush x:Key="DefaultText" Color="#FFFFE883"/>
+    
+    <!-- Main Application Colour -->
+    <SolidColorBrush x:Key="MainAppColour" Color="Orange" />
+
+    <LinearGradientBrush x:Key="DefaultGradient" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFFFE883" Offset="1"/>
+        <GradientStop Color="#FFFFC067" Offset="0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="ButtonNormalBackgroundFill" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="White" Offset="0"/>
+        <GradientStop Color="#FFE3E5F0" Offset="0.5"/>
+        <GradientStop Color="#FFC6C5D7" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="ButtonBorder" Color="#FF003C74"/>
+
+    <LinearGradientBrush x:Key="PressedBrush" StartPoint="0,0" EndPoint="0,1">
+        <LinearGradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#BBB" Offset="0.0"/>
+                <GradientStop Color="#EEE" Offset="0.1"/>
+                <GradientStop Color="#EEE" Offset="0.9"/>
+                <GradientStop Color="#FFF" Offset="1.0"/>
+            </GradientStopCollection>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="PressedBorderBrush" StartPoint="0,0" EndPoint="0,1">
+        <LinearGradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#444" Offset="0.0"/>
+                <GradientStop Color="#888" Offset="1.0"/>
+            </GradientStopCollection>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="DisabledBorderBrush" Color="#AAA" />
+
+    <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#888" />
+
+    <SolidColorBrush x:Key="DisabledBackgroundBrush" Color="#EEE" />
+
+    <LinearGradientBrush x:Key="NormalBrush" StartPoint="0,0" EndPoint="0,1">
+        <LinearGradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#FFF" Offset="0.0"/>
+                <GradientStop Color="#CCC" Offset="1.0"/>
+            </GradientStopCollection>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="NormalBorderBrush" StartPoint="0,0" EndPoint="0,1">
+        <LinearGradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#CCC" Offset="0.0"/>
+                <GradientStop Color="#444" Offset="1.0"/>
+            </GradientStopCollection>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="NavigatorButtonSelected" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFFFDB89" Offset="0"/>
+        <GradientStop Color="#FFFFB100" Offset="0.71"/>
+    </LinearGradientBrush>
+    
+    <SolidColorBrush x:Key="NavigatorButtonBorder" Color="Black"/>
+    <SolidColorBrush x:Key="NavigatorButtonUnselectedBackground" Color="DarkGray"/>
+    <SolidColorBrush x:Key="NavigatorButtonEllipseBackground" Color="Black"/>
+    <SolidColorBrush x:Key="NavigatorButtonText" Color="Black"/>
+    <SolidColorBrush x:Key="NavigatorButtonEllipseSelectedFill" Color="Orange"/>
+    <SolidColorBrush x:Key="NavigatorButtonEllipseSelectedStroke" Color="Black"/>
+    <SolidColorBrush x:Key="NavigatorButtonEllipseMouseOverStroke" Color="Orange"/>
+    <SolidColorBrush x:Key="NavigatorButtonBorderMouseOver" Color="Black"/>
+
+    <LinearGradientBrush x:Key="NavigatorButtonBackgrounMouseOver" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFFF9700" Offset="0"/>
+        <GradientStop Color="#FFFF7400" Offset="1"/>
+    </LinearGradientBrush>
+    
+</ResourceDictionary>
