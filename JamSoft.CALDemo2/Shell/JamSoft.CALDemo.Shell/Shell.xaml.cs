@@ -28,8 +28,7 @@ namespace JamSoft.CALDemo
             InitializeComponent();
         }
 
-        /// <summary>
-        /// </summary>
+        /// <summary>Shows the view.</summary>
         public void ShowView()
         {
             Show();
@@ -37,8 +36,8 @@ namespace JamSoft.CALDemo
 
         /// <summary>Handles the MouseLeftButtonDown event of the Window control.</summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="MouseButtonEventArgs"/> instance containing the event data.</param>
-        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        /// <param name="e">The <see cref="MouseButtonEventArgs" /> instance containing the event data.</param>
+        private void WindowMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
         }

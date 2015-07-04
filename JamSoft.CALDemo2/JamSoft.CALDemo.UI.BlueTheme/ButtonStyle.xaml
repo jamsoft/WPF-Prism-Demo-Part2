@@ -3,9 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:system="clr-namespace:System;assembly=mscorlib"
-    mc:Ignorable="d"
-    >
+    mc:Ignorable="d">
 
     <Style x:Key="ButtonFocusVisual">
         <Setter Property="Control.Template">
@@ -17,7 +15,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="JamSoftButtonStyle" TargetType="{system:Type Button}">
+    <Style x:Key="JamSoftButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
         <Setter Property="Background" Value="{DynamicResource DefaultGradient}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource ButtonBorder}"/>
@@ -26,7 +24,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{system:Type Button}">
+                <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="bd" 
                             Height="25"
                             HorizontalAlignment="Stretch" 

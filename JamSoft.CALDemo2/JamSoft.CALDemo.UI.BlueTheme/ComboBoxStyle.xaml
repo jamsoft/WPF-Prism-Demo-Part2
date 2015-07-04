@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!-- Combo Box Style -->
     <Style TargetType="{x:Type ComboBox}">
@@ -11,9 +10,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBox}">
                     <Grid>
-                        <ToggleButton Grid.Column="2" 
+                        <ToggleButton x:Name="ToggleButton" 
                                       Template="{DynamicResource ToggleButtonControlTemplate}" 
-                                      x:Name="ToggleButton" 
                                       Focusable="false" 
                                       IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" 
                                       ClickMode="Press"/>
@@ -26,10 +24,10 @@
                                           ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" 
                                           IsHitTestVisible="False"/>
 
-                        <TextBox Visibility="Hidden" 
+                        <TextBox x:Name="PART_EditableTextBox" 
+                                 Visibility="Hidden" 
                                  HorizontalAlignment="Left" 
                                  Margin="3,3,23,3" 
-                                 x:Name="PART_EditableTextBox" 
                                  Style="{x:Null}" 
                                  VerticalAlignment="Center" 
                                  Focusable="True" 
@@ -37,15 +35,15 @@
                                  IsReadOnly="{TemplateBinding IsReadOnly}" 
                                  Foreground="{DynamicResource MainAppColour}"/>
 
-                        <Popup IsOpen="{TemplateBinding IsDropDownOpen}" 
+                        <Popup x:Name="Popup" 
+                               IsOpen="{TemplateBinding IsDropDownOpen}" 
                                Placement="Bottom" 
-                               x:Name="Popup" 
                                Focusable="False" 
                                AllowsTransparency="True" 
                                PopupAnimation="Slide">
-                            <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}" 
+                            <Grid x:Name="DropDown" 
+                                  MaxHeight="{TemplateBinding MaxDropDownHeight}" 
                                   MinWidth="{TemplateBinding ActualWidth}" 
-                                  x:Name="DropDown" 
                                   SnapsToDevicePixels="True">
                                 <Border x:Name="DropDownBorder" 
                                         Background="{DynamicResource AppBackground}" 
@@ -157,10 +155,10 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-    <Style x:Key="JamSoftScrollViewer" TargetType="{system:Type ScrollViewer}" BasedOn="{x:Null}">
+    <Style x:Key="JamSoftScrollViewer" TargetType="{x:Type ScrollViewer}" BasedOn="{x:Null}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{system:Type ScrollViewer}">
+                <ControlTemplate TargetType="{x:Type ScrollViewer}">
                     <Grid Background="{TemplateBinding Background}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
