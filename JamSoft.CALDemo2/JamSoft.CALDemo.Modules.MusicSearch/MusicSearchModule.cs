@@ -50,10 +50,8 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
         /// <summary>Registers the views and services.</summary>
         private void RegisterViewsAndServices()
         {
-            _container.RegisterType<IMusicSearchPresenterModel, MusicSearchPresenterModel>(
-                new ContainerControlledLifetimeManager());
-            _container.RegisterType<IMusicSearchPresenter, MusicSearchPresenter>(
-                new ContainerControlledLifetimeManager());
+            _container.RegisterType<IMusicSearchPresenterModel, MusicSearchPresenterModel>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IMusicSearchPresenter, MusicSearchPresenter>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IMusicSearchView, MusicSearchView>(new ContainerControlledLifetimeManager());
         }
     }

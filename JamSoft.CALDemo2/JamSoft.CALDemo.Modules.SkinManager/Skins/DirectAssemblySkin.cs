@@ -135,6 +135,10 @@ namespace JamSoft.CALDemo.Modules.SkinManager.Skins
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             finally
             {
                 PostLoadResources();

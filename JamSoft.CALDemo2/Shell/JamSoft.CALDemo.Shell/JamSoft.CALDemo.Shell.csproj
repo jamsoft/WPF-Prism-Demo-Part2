@@ -146,6 +146,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="defaultsettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>defaultsettings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -161,6 +166,8 @@
     <None Include="App.config" />
     <None Include="defaultsettings.settings">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>defaultsettings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
     <None Include="packages.config" />

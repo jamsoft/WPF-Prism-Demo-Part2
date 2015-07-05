@@ -27,11 +27,11 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
 
     using Microsoft.Practices.Prism.Commands;
     using Microsoft.Practices.Prism.PubSubEvents;
-    using Microsoft.Practices.Unity;
 
     using MusicBrainz;
 
     /// <summary>
+    /// The music search presenter model
     /// </summary>
     public class MusicSearchPresenterModel : IMusicSearchPresenterModel, INotifyPropertyChanged
     {
@@ -54,15 +54,9 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
             _eventAggregator = eventAggregator;
             _toolbarPresentationModel = toolbarPresentationModel;
 
-            _searchForArtistCommand = new DelegateCommand<object>(
-                SearchForArtistCommandExecuted, 
-                SearchForArtistCommandCanExecute);
-            _searchForArtistReleasesCommand = new DelegateCommand<object>(
-                SearchForArtistReleasesCommandExecuted, 
-                SearchForArtistReleasesCommandCanExecute);
-            _clearArtistInfoCommand = new DelegateCommand<object>(
-                ClearArtistInfoCommandExecuted, 
-                ClearArtistInfoCommandCanExecute);
+            _searchForArtistCommand = new DelegateCommand<object>(SearchForArtistCommandExecuted);
+            _searchForArtistReleasesCommand = new DelegateCommand<object>(SearchForArtistReleasesCommandExecuted, SearchForArtistReleasesCommandCanExecute);
+            _clearArtistInfoCommand = new DelegateCommand<object>(ClearArtistInfoCommandExecuted, ClearArtistInfoCommandCanExecute);
         }
 
         #region Activate Model
@@ -132,11 +126,6 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
                 _searchForArtistReleasesCommand.RaiseCanExecuteChanged();
             }
         }
-
-        /// <summary>
-        /// The _can search for artists
-        /// </summary>
-        private bool _canSearchForArtists = true;
 
         /// <summary>
         /// The _search for artist command
@@ -239,24 +228,13 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
         /// <param name="obj">The object.</param>
         private void SearchForArtistCommandExecuted(object obj)
         {
-            _canSearchForArtists = false;
-            _searchForArtistCommand.RaiseCanExecuteChanged();
-
             PerformArtistQueryAsync(ArtistSearchCallback, new object());
         }
 
-        /// <summary>Searches for artist command can execute.</summary>
-        /// <param name="obj">The object.</param>
-        /// <returns></returns>
-        private bool SearchForArtistCommandCanExecute(object obj)
-        {
-            return _canSearchForArtists;
-        }
-
-        /// <summary>Artists the search callback.</summary>
-        /// <param name="sender">The sender.</param>
+        /// <summary><c>Artists</c> the search callback.</summary>
+        /// <param name="sender">The <paramref name="sender"/>.</param>
         /// <param name="args">The <see cref="ArtistSearchCompletedEventArgs"/> instance containing the event data.</param>
-        public void ArtistSearchCallback(object sender, ArtistSearchCompletedEventArgs args)
+        private void ArtistSearchCallback(object sender, ArtistSearchCompletedEventArgs args)
         {
             if (args.Error == null)
             {
@@ -264,7 +242,6 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
                 Artists = objConverter.Convert(args.ArtistsSearchResults);
             }
 
-            _canSearchForArtists = false;
             _canClearArtistInfo = true;
             _searchForArtistCommand.RaiseCanExecuteChanged();
             _clearArtistInfoCommand.RaiseCanExecuteChanged();
@@ -273,7 +250,7 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
         }
 
         /// <summary>Performs the artist query asynchronous.</summary>
-        /// <param name="callback">The callback.</param>
+        /// <param name="callback">The <paramref name="callback"/>.</param>
         /// <param name="userState">State of the user.</param>
         public void PerformArtistQueryAsync(Action<object, ArtistSearchCompletedEventArgs> callback, object userState)
         {
@@ -305,9 +282,6 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
         /// <param name="obj">The object.</param>
         private void SearchForArtistReleasesCommandExecuted(object obj)
         {
-            _canSearchForArtists = false;
-            _searchForArtistCommand.RaiseCanExecuteChanged();
-
             _canSearchForArtistReleases = false;
             _searchForArtistReleasesCommand.RaiseCanExecuteChanged();
 
@@ -374,14 +348,16 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
         {
             // this would be a specific toolbar user control provided by a module
             // to the toolbar module
-            _clearStuff = new Button();
-            _clearStuff.Style = (Style)Application.Current.FindResource("JamSoftButtonStyle");
-            _clearStuff.Height = 25;
-            _clearStuff.Width = 50;
-            _clearStuff.Padding = new Thickness(0, 5, 0, 0);
-            _clearStuff.Margin = new Thickness(0, 0, 5, 0);
-            _clearStuff.Content = "Clear";
-            _clearStuff.Command = _clearArtistInfoCommand;
+            _clearStuff = new Button
+                              {
+                                  Style = (Style)Application.Current.FindResource("JamSoftButtonStyle"),
+                                  Height = 25,
+                                  Width = 50,
+                                  Padding = new Thickness(0, 5, 0, 0),
+                                  Margin = new Thickness(0, 0, 5, 0),
+                                  Content = "Clear",
+                                  Command = _clearArtistInfoCommand
+                              };
             _toolbarPresentationModel.AddToolBarItem(_clearStuff);
         }
 
@@ -409,7 +385,6 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
                 _releases.Clear();
             }
 
-            _canSearchForArtists = true;
             _canClearArtistInfo = false;
             _canSearchForArtistReleases = false;
 
@@ -419,8 +394,8 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
         }
 
         /// <summary>Clears the artist information command can execute.</summary>
-        /// <param name="obj">The object.</param>
-        /// <returns></returns>
+        /// <param name="obj">The <see langword="object"/>.</param>
+        /// <returns>returns true if command can be executed</returns>
         private bool ClearArtistInfoCommandCanExecute(object obj)
         {
             return _canClearArtistInfo;

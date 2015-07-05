@@ -22,7 +22,7 @@ namespace JamSoft.CALDemo.Modules.SkinManager
 
     /// <summary>
     /// </summary>
-    [Module(ModuleName = "SkinManagerModule")]
+    [Module(ModuleName = "SkinManagerModule", OnDemand = false)]
     public class SkinManagerModule : IModule
     {
         /// <summary>The _container</summary>

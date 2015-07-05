@@ -28,6 +28,11 @@ namespace JamSoft.CALDemo.Modules.PageManager
         private readonly IUnityContainer _container;
 
         /// <summary>
+        /// The _main region controller
+        /// </summary>
+        private MainRegionController _mainRegionController;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="PageManagerModule"/> class.
         /// </summary>
         /// <param name="container">
@@ -50,7 +55,7 @@ namespace JamSoft.CALDemo.Modules.PageManager
         protected void RegisterViewsAndServices()
         {
             _container.RegisterType<IPageManager, PageManager>(new ContainerControlledLifetimeManager());
-            _container.Resolve<MainRegionController>();
+            _mainRegionController = _container.Resolve<MainRegionController>();
         }
     }
 }

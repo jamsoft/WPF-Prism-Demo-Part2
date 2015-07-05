@@ -25,6 +25,7 @@ namespace JamSoft.CALDemo
     using Microsoft.Practices.Unity;
 
     /// <summary>
+    /// The application bootstrapper
     /// </summary>
     internal class JamSoftBootstrapper : UnityBootstrapper
     {
@@ -39,9 +40,11 @@ namespace JamSoft.CALDemo
         protected override void ConfigureContainer()
         {
             // Container.RegisterType<IShellView, Shell>();
-            var eventAggregator = new EventAggregator();
+            var eventAggregator = new JamSoftEventAggregator();
             Container.RegisterInstance(typeof(IEventAggregator), eventAggregator, new ContainerControlledLifetimeManager());
             base.ConfigureContainer();
+
+            var ea = Container.Resolve<IEventAggregator>();
         }
 
         /// <summary>
@@ -60,6 +63,14 @@ namespace JamSoft.CALDemo
         protected override DependencyObject CreateShell()
         {
             return ServiceLocator.Current.GetInstance<Shell>();
+        }
+    }
+
+    public class JamSoftEventAggregator : EventAggregator
+    {
+        public JamSoftEventAggregator()
+        {
+            
         }
     }
 }

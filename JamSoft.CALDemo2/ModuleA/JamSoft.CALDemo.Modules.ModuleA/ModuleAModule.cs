@@ -52,8 +52,7 @@ namespace JamSoft.CALDemo.Modules.ModuleA
         private void RegisterViewsAndServices()
         {
             _container.RegisterType<IModuleAView, ModuleAView>(new ContainerControlledLifetimeManager());
-            _container.RegisterType<IModuleAPresenterModel, ModuleAPresenterModel>(
-                new ContainerControlledLifetimeManager());
+            _container.RegisterType<IModuleAPresenterModel, ModuleAPresenterModel>(new ContainerControlledLifetimeManager());
         }
     }
 }
