@@ -19,7 +19,7 @@ namespace JamSoft.CALDemo.Modules.Navigator
     using JamSoft.CALDemo.Modules.PageManager.Core;
 
     /// <summary>
-    /// 
+    /// The INavigatorPresentationModel <see langword="interface"/>
     /// </summary>
     public interface INavigatorPresentationModel
     {

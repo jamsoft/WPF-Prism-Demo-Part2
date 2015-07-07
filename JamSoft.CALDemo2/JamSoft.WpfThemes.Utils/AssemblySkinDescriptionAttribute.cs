@@ -17,7 +17,7 @@ namespace JamSoft.WpfThemes.Utils
     using System;
 
     /// <summary>
-    /// 
+    /// The assembly description attribute class
     /// </summary>
     public class AssemblySkinDescriptionAttribute : Attribute
     {

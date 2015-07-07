@@ -12,14 +12,14 @@
             <TextBlock Text="Write your message below:" 
                        FontFamily="Verdana" 
                        Foreground="{DynamicResource DefaultText}" />
-            <TextBox x:Name="txtMessageToSend"
+            <TextBox x:Name="TxtMessageToSend"
                      Background="{DynamicResource AppBackground}"
                      HorizontalAlignment="Left" 
                      Width="180" 
                      Margin="0,5,0,5" 
                      Text="{Binding Path=MessageToSend, Mode=TwoWay}" 
                      Style="{DynamicResource JamSoftTextBoxStyle}" />
-            <Button x:Name="btnSendMessage" 
+            <Button x:Name="BtnSendMessage" 
                     HorizontalAlignment="Left" 
                     Command="{Binding Path=SendMessageCommand}" 
                     Content="Publish Message" 

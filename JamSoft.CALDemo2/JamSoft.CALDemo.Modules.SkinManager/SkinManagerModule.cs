@@ -17,10 +17,10 @@ namespace JamSoft.CALDemo.Modules.SkinManager
     using JamSoft.CALDemo.Modules.SkinManager.Core;
 
     using Microsoft.Practices.Prism.Modularity;
-    using Microsoft.Practices.Prism.PubSubEvents;
     using Microsoft.Practices.Unity;
 
     /// <summary>
+    /// The skin manager module initializer class
     /// </summary>
     [Module(ModuleName = "SkinManagerModule", OnDemand = false)]
     public class SkinManagerModule : IModule
@@ -46,7 +46,7 @@ namespace JamSoft.CALDemo.Modules.SkinManager
         }
 
         /// <summary>Registers the views and services.</summary>
-        protected void RegisterViewsAndServices()
+        private void RegisterViewsAndServices()
         {
             _container.RegisterType<ISkinManager, SkinManager>(new ContainerControlledLifetimeManager());
         }

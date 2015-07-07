@@ -20,6 +20,7 @@ namespace JamSoft.CALDemo.Modules.ModuleB
     using Microsoft.Practices.Unity;
 
     /// <summary>
+    /// The ModuleB initializer
     /// </summary>
     [Module(ModuleName = "ModuleB")]
     [ModuleDependency("PageManagerModule")]

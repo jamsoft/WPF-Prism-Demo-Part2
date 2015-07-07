@@ -20,7 +20,7 @@ namespace JamSoft.CALDemo.Modules.SkinManager.Skins
     using JamSoft.CALDemo.Modules.SkinManager.Core;
 
     /// <summary>
-    /// 
+    /// The referenced skin assembly class
     /// </summary>
     public sealed class ReferencedAssemblySkin : Skin
     {
@@ -40,6 +40,15 @@ namespace JamSoft.CALDemo.Modules.SkinManager.Skins
         }
 
         /// <summary>Loads the resources.</summary>
+        /// <exception cref="ArgumentNullException"><paramref>
+        ///         <name>resourceLocator</name>
+        ///     </paramref>
+        ///     is <c>null</c>.</exception>
+        /// <exception cref="ArgumentException">The <see cref="P:System.Uri.OriginalString" /> property of the <paramref>
+        ///         <name>resourceLocator</name>
+        ///     </paramref>
+        ///     <see cref="T:System.Uri" /> parameter is null.</exception>
+        /// <exception cref="Exception">The file is not a XAML file.</exception>
         protected override void LoadResources()
         {
             var resource = (ResourceDictionary)Application.LoadComponent(_resourceUri);

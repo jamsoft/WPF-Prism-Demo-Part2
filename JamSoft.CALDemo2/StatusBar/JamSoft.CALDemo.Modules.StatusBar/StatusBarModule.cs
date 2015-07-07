@@ -1,5 +1,4 @@
 ﻿#region File Header
-
 // ====================================================================
 // Copyright (c) 2015, James Alexander Green (JamSoft)
 // Some Rights Reserved :)
@@ -15,11 +14,11 @@
 namespace JamSoft.CALDemo.Modules.StatusBar
 {
     using Microsoft.Practices.Prism.Modularity;
-    using Microsoft.Practices.Prism.PubSubEvents;
     using Microsoft.Practices.Prism.Regions;
     using Microsoft.Practices.Unity;
 
     /// <summary>
+    /// The status bar module initializer
     /// </summary>
     [Module(ModuleName = "StatusBarModule", OnDemand = false)]
     public class StatusBarModule : IModule
@@ -57,11 +56,10 @@ namespace JamSoft.CALDemo.Modules.StatusBar
         }
 
         /// <summary>Registers the views and services.</summary>
-        public void RegisterViewsAndServices()
+        private void RegisterViewsAndServices()
         {
             _container.RegisterType<IStatusBarView, StatusBarView>(new ContainerControlledLifetimeManager());
-            _container.RegisterType<IStatusBarPresentationModel, StatusBarPresentationModel>(
-                new ContainerControlledLifetimeManager());
+            _container.RegisterType<IStatusBarPresentationModel, StatusBarPresentationModel>(new ContainerControlledLifetimeManager());
         }
     }
 }

@@ -19,15 +19,12 @@ namespace JamSoft.CALDemo.Modules.StatusBar
     using JamSoft.CALDemo.Modules.StatusBar.Core;
 
     using Microsoft.Practices.Prism.PubSubEvents;
-    using Microsoft.Practices.Unity;
 
     /// <summary>
+    /// The status bar presentation model
     /// </summary>
     public class StatusBarPresentationModel : IStatusBarPresentationModel, INotifyPropertyChanged
     {
-        /// <summary>The _event aggregator</summary>
-        private readonly IEventAggregator _eventAggregator;
-
         /// <summary>The _view</summary>
         private readonly IStatusBarView _view;
 
@@ -37,26 +34,24 @@ namespace JamSoft.CALDemo.Modules.StatusBar
         /// <summary>
         /// Initializes a new instance of the <see cref="StatusBarPresentationModel"/> class.
         /// </summary>
-        /// <param name="container">The container.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="view">The view.</param>
         public StatusBarPresentationModel(
-            IUnityContainer container, 
             IEventAggregator eventAggregator, 
             IStatusBarView view)
         {
-            _eventAggregator = eventAggregator;
             _view = view;
             _view.Model = this;
-
-            _eventAggregator.GetEvent<AppStatusMessageEvent>()
-                .Subscribe(OnAppStatusChanged, ThreadOption.UIThread, true);
-
+            eventAggregator.GetEvent<AppStatusMessageEvent>().Subscribe(OnAppStatusChanged, ThreadOption.UIThread, true);
             AppStatusMessage = "Ready...";
         }
 
+        /// <summary>Occurs when a property value changes.</summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
         /// <summary>Gets or sets the application status message.</summary>
         /// <value>The application status message.</value>
+        // ReSharper disable once MemberCanBePrivate.Global
         public string AppStatusMessage
         {
             get
@@ -71,11 +66,8 @@ namespace JamSoft.CALDemo.Modules.StatusBar
             }
         }
 
-        /// <summary>Occurs when a property value changes.</summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// </summary>
+        /// <summary>Gets the view.</summary>
+        /// <value>The view.</value>
         public IStatusBarView View
         {
             get

@@ -78,7 +78,7 @@ namespace JamSoft.CALDemo.Modules.Navigator
         #region Page Selection Bits
 
         /// <summary>
-        /// Called when the page is selected.
+        /// Called when the <paramref name="page"/> is selected.
         /// </summary>
         /// <param name="page">The <paramref name="page"/>.</param>
         private void OnPageSelected(IPage page)

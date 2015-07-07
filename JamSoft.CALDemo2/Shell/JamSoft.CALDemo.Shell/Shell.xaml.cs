@@ -14,13 +14,12 @@
 
 namespace JamSoft.CALDemo
 {
-    using System.Windows;
     using System.Windows.Input;
 
     /// <summary>
     ///     Interaction logic for Shell.xaml
     /// </summary>
-    public partial class Shell : Window, IShellView
+    public partial class Shell : IShellView
     {
         /// <summary>Initializes a new instance of the <see cref="Shell"/> class.</summary>
         public Shell()

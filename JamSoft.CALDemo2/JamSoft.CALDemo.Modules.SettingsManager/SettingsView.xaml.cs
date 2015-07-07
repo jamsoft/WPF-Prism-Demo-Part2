@@ -30,8 +30,8 @@ namespace JamSoft.CALDemo.Modules.SettingsManager
             InitializeComponent();
         }
 
-        /// <summary>
-        /// </summary>
+        /// <summary>Sets the model.</summary>
+        /// <value>The model.</value>
         public ISettingsManagerPresentationModel Model
         {
             set
@@ -40,13 +40,13 @@ namespace JamSoft.CALDemo.Modules.SettingsManager
             }
         }
 
-        /// <summary>
-        /// </summary>
+        /// <summary>Sets the skin picker model.</summary>
+        /// <value>The skin picker model.</value>
         public ISkinManager SkinPickerModel
         {
             set
             {
-                cmbSkinPicker.DataContext = value;
+                CmbSkinPicker.DataContext = value;
             }
         }
     }

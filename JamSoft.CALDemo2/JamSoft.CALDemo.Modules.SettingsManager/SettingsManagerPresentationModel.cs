@@ -111,7 +111,7 @@ namespace JamSoft.CALDemo.Modules.SettingsManager
         }
 
         /// <summary>Gets the setting default value.</summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">The value type</typeparam>
         /// <param name="key">The parameter <paramref name="key"/> type.</param>
         /// <returns>the value</returns>
         public T GetSettingDefaultValue<T>(string key)

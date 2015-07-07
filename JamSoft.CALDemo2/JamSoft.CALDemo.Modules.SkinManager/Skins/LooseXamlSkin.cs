@@ -22,7 +22,7 @@ namespace JamSoft.CALDemo.Modules.SkinManager.Skins
     using JamSoft.CALDemo.Modules.SkinManager.Core;
 
     /// <summary>
-    /// 
+    /// The loose XAML Skin class
     /// </summary>
     public sealed class LooseXamlSkin : Skin
     {
@@ -38,8 +38,7 @@ namespace JamSoft.CALDemo.Modules.SkinManager.Skins
         public LooseXamlSkin(string name, string description, Uri source)
             : base(name, description)
         {
-            _sources = new List<Uri>();
-            _sources.Add(source);
+            _sources = new List<Uri> { source };
         }
 
         /// <summary>
@@ -55,6 +54,7 @@ namespace JamSoft.CALDemo.Modules.SkinManager.Skins
         }
 
         /// <summary>Loads the resources.</summary>
+        /// <exception cref="Exception">Thrown when setting the skinDirectory source property.</exception>
         protected override void LoadResources()
         {
             foreach (var uri in _sources)
@@ -66,7 +66,7 @@ namespace JamSoft.CALDemo.Modules.SkinManager.Skins
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine("Change error: " + ex.ToString());
+                    Debug.WriteLine("Change error: " + ex);
                     throw;
                 }
 

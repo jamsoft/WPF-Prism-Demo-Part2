@@ -15,6 +15,7 @@
 namespace JamSoft.CALDemo.Modules.StatusBar
 {
     /// <summary>
+    /// The IStatusBarPresentationModel <see langword="interface"/>
     /// </summary>
     public interface IStatusBarPresentationModel
     {

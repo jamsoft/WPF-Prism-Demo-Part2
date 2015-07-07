@@ -18,7 +18,7 @@ namespace JamSoft.CALDemo.Modules.SettingsManager
     using JamSoft.CALDemo.Modules.SkinManager.Core;
 
     /// <summary>
-    /// 
+    /// The ISettingsView <see langword="interface"/>
     /// </summary>
     public interface ISettingsView
     {

@@ -21,7 +21,7 @@ namespace JamSoft.CALDemo.Modules.ToolBar
     /// <summary>
     ///     Interaction logic for ToolBarView.xaml
     /// </summary>
-    public partial class ToolBarView : UserControl, IToolBarView
+    public partial class ToolBarView : IToolBarView
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ToolBarView"/> class.

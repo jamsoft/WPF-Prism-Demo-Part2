@@ -19,6 +19,7 @@ namespace JamSoft.CALDemo.Modules.Navigator
     using Microsoft.Practices.Unity;
 
     /// <summary>
+    /// The Navigator module initializer
     /// </summary>
     [Module(ModuleName = "NavigatorModule")]
     [ModuleDependency("PageManagerModule")]
@@ -27,8 +28,7 @@ namespace JamSoft.CALDemo.Modules.Navigator
         /// <summary>The _container</summary>
         private readonly IUnityContainer _container;
 
-        /// <summary>
-        /// </summary>
+        /// <summary>The _region manager</summary>
         private readonly IRegionManager _regionManager;
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace JamSoft.CALDemo.Modules.Navigator
         }
 
         /// <summary>Registers the views and services.</summary>
-        protected void RegisterViewsAndServices()
+        private void RegisterViewsAndServices()
         {
             _container.RegisterType<INavigatorView, NavigatorView>();
         }

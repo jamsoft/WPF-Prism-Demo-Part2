@@ -63,6 +63,9 @@ namespace JamSoft.CALDemo.Modules.ToolBar
                 OnCloseApplicationCommandCanExecute);
         }
 
+        /// <summary>Occurs when a property value changes.</summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
         /// <summary>Gets the registered tool controls.</summary>
         /// <value>The registered tool controls.</value>
         public ObservableCollection<Control> RegisteredToolControls
@@ -93,33 +96,8 @@ namespace JamSoft.CALDemo.Modules.ToolBar
             }
         }
 
-        /// <summary>Occurs when a property value changes.</summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Called when [close application command executed].
-        /// </summary>
-        /// <param name="obj">The object.</param>
-        private void OnCloseApplicationCommandExecuted(object obj)
-        {
-            _settingsManager.SaveSettings();
-            Application.Current.Shutdown(0);
-        }
-
-        /// <summary>
-        /// Called when [close application command can execute].
-        /// </summary>
-        /// <param name="obj">The object.</param>
-        /// <returns></returns>
-        private bool OnCloseApplicationCommandCanExecute(object obj)
-        {
-            // Basically NEVER tell the user they can't shut the app!  Urgh!
-            // Well ... unless are going to totally kill something as a result ! :)
-            return true;
-        }
-
         /// <summary>Adds the tool bar item.</summary>
-        /// <param name="control">The control.</param>
+        /// <param name="control">The <paramref name="control"/>.</param>
         public void AddToolBarItem(Control control)
         {
             if (!_view.DynamicToolPanel.Children.Contains(control))
@@ -140,6 +118,28 @@ namespace JamSoft.CALDemo.Modules.ToolBar
                 _view.DynamicToolPanel.Children.Remove(control);
                 NotifyPropertyChanged("RegisteredToolControls");
             }
+        }
+
+        /// <summary>
+        /// Called when [close application command executed].
+        /// </summary>
+        /// <param name="obj">The <see langword="object"/>.</param>
+        private void OnCloseApplicationCommandExecuted(object obj)
+        {
+            _settingsManager.SaveSettings();
+            Application.Current.Shutdown(0);
+        }
+
+        /// <summary>
+        /// Called when [close application command can execute].
+        /// </summary>
+        /// <param name="obj">The <see langword="object"/>.</param>
+        /// <returns>true if can be closed</returns>
+        private bool OnCloseApplicationCommandCanExecute(object obj)
+        {
+            // Basically NEVER tell the user they can't shut the app!  Urgh!
+            // Well ... unless are going to totally kill something as a result ! :)
+            return true;
         }
 
         /// <summary>Notifies the property changed.</summary>

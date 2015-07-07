@@ -14,12 +14,14 @@
 
 namespace JamSoft.CALDemo.Modules.SkinManager
 {
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows;
 
     using JamSoft.CALDemo.Modules.SkinManager.Core;
+    using JamSoft.CALDemo.Modules.SkinManager.Core.Exceptions;
 
     /// <summary>
     /// The skin manager class
@@ -89,7 +91,7 @@ namespace JamSoft.CALDemo.Modules.SkinManager
         /// Called when [coerce skin value].
         /// </summary>
         /// <param name="d">The <paramref name="d"/>.</param>
-        /// <param name="baseValue">The <c>base</c> value.</param>
+        /// <param name="baseValue">The base value.</param>
         /// <returns>the coerced skin <see langword="object"/></returns>
         private static object OnCoerceSkinValue(DependencyObject d, object baseValue)
         {
@@ -104,7 +106,7 @@ namespace JamSoft.CALDemo.Modules.SkinManager
         /// <summary>
         /// Called when [current skin changed].
         /// </summary>
-        /// <param name="d">The d.</param>
+        /// <param name="d">The <paramref name="d"/>.</param>
         /// <param name="e">The <see cref="DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
         private static void OnCurrentSkinChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -117,14 +119,14 @@ namespace JamSoft.CALDemo.Modules.SkinManager
             }
             catch (SkinException ex)
             {
-                // log it 
+                Console.WriteLine(ex);
             }
         }
 
-        /// <summary>Initializes this instance.</summary>
+        /// <summary>Initializes <c>this</c> instance.</summary>
         private void Initialize()
         {
-            _skinFinder.Init();
+            _skinFinder.Initialize();
             _skins = _skinFinder.SkinsList;
         }
     }

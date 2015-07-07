@@ -33,8 +33,8 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
             InitializeComponent();
         }
 
-        /// <summary>
-        /// </summary>
+        /// <summary>Sets the music search presenter model</summary>
+        /// <value>The model.</value>
         public IMusicSearchPresenterModel Model
         {
             set

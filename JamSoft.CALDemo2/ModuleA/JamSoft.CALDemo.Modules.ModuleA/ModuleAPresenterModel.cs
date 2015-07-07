@@ -73,9 +73,9 @@ namespace JamSoft.CALDemo.Modules.ModuleA
             }
         }
 
-        /// <summary>Sets a value indicating whether this instance is active page.</summary>
+        /// <summary>Sets a value indicating whether <c>this</c> instance is active page.</summary>
         /// <value>
-        /// <c>true</c> if this instance is active page; otherwise, <c>false</c>.
+        /// <c>true</c> if <c>this</c> instance is active page; otherwise, <c>false</c>.
         /// </value>
         public bool IsActivePage
         {

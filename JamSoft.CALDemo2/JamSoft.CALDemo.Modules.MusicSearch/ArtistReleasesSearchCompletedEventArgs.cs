@@ -21,6 +21,7 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
     using MusicBrainz;
 
     /// <summary>
+    /// The event completed arguments
     /// </summary>
     public class ArtistReleasesSearchCompletedEventArgs : AsyncCompletedEventArgs
     {
@@ -47,7 +48,7 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
         /// Initializes a new instance of the <see cref="ArtistReleasesSearchCompletedEventArgs"/> class.
         /// </summary>
         /// <param name="ex">The ex.</param>
-        /// <param name="cancelled">if set to <c>true</c> [cancelled].</param>
+        /// <param name="cancelled">if set to true [cancelled].</param>
         /// <param name="userState">State of the user.</param>
         public ArtistReleasesSearchCompletedEventArgs(Exception ex, bool cancelled, object userState)
             : this(null, ex, cancelled, userState)
@@ -59,9 +60,9 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
         /// </summary>
         /// <param name="artistsReleasesSearchResults">The artists releases search results.</param>
         /// <param name="ex">The ex.</param>
-        /// <param name="cancelled">if set to <c>true</c> [cancelled].</param>
+        /// <param name="cancelled">if set to true [cancelled].</param>
         /// <param name="userState">State of the user.</param>
-        public ArtistReleasesSearchCompletedEventArgs(
+        private ArtistReleasesSearchCompletedEventArgs(
             List<Release> artistsReleasesSearchResults, 
             Exception ex, 
             bool cancelled, 

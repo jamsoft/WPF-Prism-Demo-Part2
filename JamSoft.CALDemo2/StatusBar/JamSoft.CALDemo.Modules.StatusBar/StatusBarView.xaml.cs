@@ -14,12 +14,10 @@
 
 namespace JamSoft.CALDemo.Modules.StatusBar
 {
-    using System.Windows.Controls;
-
     /// <summary>
-    ///     Interaction logic for ssStatusBar.xaml
+    /// Interaction logic for StatusBar 
     /// </summary>
-    public sealed partial class StatusBarView : UserControl, IStatusBarView
+    public sealed partial class StatusBarView : IStatusBarView
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StatusBarView"/> class.
@@ -29,8 +27,8 @@ namespace JamSoft.CALDemo.Modules.StatusBar
             InitializeComponent();
         }
 
-        /// <summary>
-        /// </summary>
+        /// <summary>Sets the model.</summary>
+        /// <value>The model.</value>
         public IStatusBarPresentationModel Model
         {
             set

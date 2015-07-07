@@ -44,6 +44,8 @@ namespace JamSoft.CALDemo
 
         /// <summary>Creates the shell.</summary>
         /// <returns>The main application shell</returns>
+        /// <exception cref="ActivationException">if there is are errors resolving
+        /// the service instance.</exception>
         protected override DependencyObject CreateShell()
         {
             return ServiceLocator.Current.GetInstance<Shell>();

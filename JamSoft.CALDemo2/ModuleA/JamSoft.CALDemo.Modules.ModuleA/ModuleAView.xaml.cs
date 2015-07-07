@@ -14,14 +14,12 @@
 
 namespace JamSoft.CALDemo.Modules.ModuleA
 {
-    using System.Windows.Controls;
-
     using JamSoft.CALDemo.Modules.ModuleA.Core;
 
     /// <summary>
     ///     Interaction logic for ModuleAView.xaml
     /// </summary>
-    public partial class ModuleAView : UserControl, IModuleAView
+    public partial class ModuleAView : IModuleAView
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ModuleAView"/> class.

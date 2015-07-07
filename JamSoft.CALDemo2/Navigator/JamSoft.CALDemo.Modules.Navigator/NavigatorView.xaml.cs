@@ -38,7 +38,7 @@ namespace JamSoft.CALDemo.Modules.Navigator
         /// <summary>Occurs when [item change request].</summary>
         public event EventHandler<PageEventArgs> ItemChangeRequest;
 
-        /// <summary>Sets or sets the model.</summary>
+        /// <summary>Gets or sets the model.</summary>
         /// <value>The model.</value>
         public INavigatorPresentationModel Model
         {
@@ -60,7 +60,7 @@ namespace JamSoft.CALDemo.Modules.Navigator
         {
             get
             {
-                return theListView.SelectedItem as IPage;
+                return TheListView.SelectedItem as IPage;
             }
 
             set
@@ -86,7 +86,7 @@ namespace JamSoft.CALDemo.Modules.Navigator
         /// <param name="page">The <paramref name="page"/>.</param>
         private void SetListViewItemWithoutEvent(IPage page)
         {
-            theListView.SelectedItem = page;
+            TheListView.SelectedItem = page;
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace JamSoft.CALDemo.Modules.Navigator
         /// <param name="e">The <see cref="SelectionChangedEventArgs"/> instance containing the event data.</param>
         private void TheListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            IPage listBoxSelectedPage = theListView.SelectedItem as IPage;
+            IPage listBoxSelectedPage = TheListView.SelectedItem as IPage;
 
             if (listBoxSelectedPage != _selectedPage)
             {

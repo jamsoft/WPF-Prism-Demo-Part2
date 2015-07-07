@@ -166,6 +166,7 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
 
         /// <summary>Gets the artists.</summary>
         /// <value>The artists.</value>
+        // ReSharper disable once MemberCanBePrivate.Global
         public ObservableCollection<BindableArtist> Artists
         {
             get

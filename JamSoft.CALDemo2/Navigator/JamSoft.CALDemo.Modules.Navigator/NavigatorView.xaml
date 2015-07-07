@@ -9,7 +9,7 @@
     d:DesignHeight="242"
     >
     <Grid>
-        <ListBox x:Name="theListView"
+        <ListBox x:Name="TheListView"
                  VerticalContentAlignment="Center" 
 				 ItemsSource="{Binding Path=Pages}" 
 				 SelectionMode="Single"
@@ -59,7 +59,6 @@
                                        FontWeight="UltraBold" 
                                        Foreground="{DynamicResource NavigatorButtonText}" 
                                        Grid.Column="1" 
-                                       Grid.ColumnSpan="1" 
                                        HorizontalAlignment="Center" 
                                        Text="{Binding Path=ID}" 
                                        Margin="0,0,5,0" />

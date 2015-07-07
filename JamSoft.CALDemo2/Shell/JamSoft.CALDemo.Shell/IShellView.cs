@@ -1,5 +1,4 @@
 #region File Header
-
 // ====================================================================
 // Copyright (c) 2015, James Alexander Green (JamSoft)
 // Some Rights Reserved :)
@@ -15,7 +14,7 @@
 namespace JamSoft.CALDemo
 {
     /// <summary>
-    /// 
+    /// The IShellView <see langword="interface"/>
     /// </summary>
     public interface IShellView
     {

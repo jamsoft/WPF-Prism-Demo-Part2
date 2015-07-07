@@ -1,5 +1,4 @@
 ﻿#region File Header
-
 // ====================================================================
 // Copyright (c) 2015, James Alexander Green (JamSoft)
 // Some Rights Reserved :)
@@ -20,38 +19,33 @@ namespace JamSoft.CALDemo.Modules.SkinManager
     using System.Reflection;
 
     using JamSoft.CALDemo.Modules.SkinManager.Core;
+    using JamSoft.CALDemo.Modules.SkinManager.Core.Exceptions;
     using JamSoft.CALDemo.Modules.SkinManager.Skins;
     using JamSoft.WpfThemes.Utils;
 
     /// <summary>
+    /// The skin finder class - enumerates a collection of discovered skins
     /// </summary>
     internal sealed class SkinsFinder
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SkinsFinder"/> class.
-        /// </summary>
-        public SkinsFinder()
-        {
-        }
-
         #region Data
 
-        /// <summary>The _skin fullname</summary>
+        /// <summary>The skin fullname</summary>
         private string _skinFullname;
 
-        /// <summary>The _skin friendly name</summary>
+        /// <summary>The skin friendly name</summary>
         private string _skinFriendlyName;
 
-        /// <summary>The _skin description</summary>
+        /// <summary>The skin description</summary>
         private string _skinDescription;
 
-        /// <summary>The _skins</summary>
+        /// <summary>The skins</summary>
         private FileInfo[] _skins;
 
-        /// <summary>The _skins directory</summary>
+        /// <summary>The skins directory</summary>
         private DirectoryInfo _skinsDirectory;
 
-        /// <summary>The _skins list</summary>
+        /// <summary>The skins list</summary>
         private List<Skin> _skinsList = new List<Skin>();
 
         /// <summary>Gets the skins list.</summary>
@@ -73,8 +67,8 @@ namespace JamSoft.CALDemo.Modules.SkinManager
 
         #region Methods
 
-        /// <summary>Initializes this instance.</summary>
-        public void Init()
+        /// <summary>Initializes <c>this</c> instance.</summary>
+        public void Initialize()
         {
             _skinsDirectory = GetDirectoryInfo();
             FindSkins();
@@ -90,7 +84,7 @@ namespace JamSoft.CALDemo.Modules.SkinManager
             {
                 foreach (var skin in _skins)
                 {
-                    if (IsSkin(skin) == true)
+                    if (IsSkin(skin))
                     {
                         _skinFullname = skin.FullName;
                         _skinsList.Add(new DirectAssemblySkin(_skinFriendlyName, _skinDescription, _skinFullname));
@@ -100,7 +94,7 @@ namespace JamSoft.CALDemo.Modules.SkinManager
         }
 
         /// <summary>Gets the dynamic libraries.</summary>
-        /// <exception cref="JamSoft.CALDemo.Modules.SkinManager.Core.SkinException">
+        /// <exception cref="SkinException">
         /// Skins directory not found
         /// or
         /// No skins found!
@@ -124,7 +118,7 @@ namespace JamSoft.CALDemo.Modules.SkinManager
         }
 
         /// <summary>Gets the directory information.</summary>
-        /// <returns></returns>
+        /// <returns>A directory info instance</returns>
         private DirectoryInfo GetDirectoryInfo()
         {
             var skinsDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Skins");
@@ -136,9 +130,9 @@ namespace JamSoft.CALDemo.Modules.SkinManager
             return _skinsDirectory;
         }
 
-        /// <summary>Determines whether the specified file is skin.</summary>
-        /// <param name="file">The file.</param>
-        /// <returns></returns>
+        /// <summary>Determines whether the specified <c>file</c> is skin.</summary>
+        /// <param name="file">The <paramref name="file"/>.</param>
+        /// <returns>true if the file is actually a skin assembly</returns>
         private bool IsSkin(FileInfo file)
         {
             var isSkin = false;
@@ -148,19 +142,15 @@ namespace JamSoft.CALDemo.Modules.SkinManager
 
             try
             {
-                skinNames =
-                    (AssemblySkinNameAttribute[])
-                    skinAssembly.GetCustomAttributes(typeof(AssemblySkinNameAttribute), true);
-                skinDescriptions =
-                    (AssemblySkinDescriptionAttribute[])
-                    skinAssembly.GetCustomAttributes(typeof(AssemblySkinDescriptionAttribute), true);
+                skinNames = (AssemblySkinNameAttribute[])skinAssembly.GetCustomAttributes(typeof(AssemblySkinNameAttribute), true);
+                skinDescriptions = (AssemblySkinDescriptionAttribute[])skinAssembly.GetCustomAttributes(typeof(AssemblySkinDescriptionAttribute), true);
             }
             catch (Exception ex)
             {
-                // log it
+                Console.WriteLine(ex);
             }
 
-            if (skinNames.Length == 1 && skinDescriptions.Length == 1)
+            if (skinDescriptions != null && (skinNames.Length == 1 && skinDescriptions.Length == 1))
             {
                 _skinFriendlyName = skinNames[0].AssemblySkinName;
                 _skinDescription = skinDescriptions[0].AssemblySkinDescription;

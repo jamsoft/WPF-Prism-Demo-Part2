@@ -1,5 +1,4 @@
 ﻿#region File Header
-
 // ====================================================================
 // Copyright (c) 2015, James Alexander Green (JamSoft)
 // Some Rights Reserved :)
@@ -23,7 +22,7 @@ namespace JamSoft.CALDemo.Modules.SettingsManager
     using System.Xml.Serialization;
 
     /// <summary>
-    /// 
+    /// The serializable properties collection class
     /// </summary>
     [Serializable]
     public class PropertiesCollection : IXmlSerializable
@@ -42,7 +41,7 @@ namespace JamSoft.CALDemo.Modules.SettingsManager
         }
 
         /// <summary>
-        /// This method is reserved and should not be used. When implementing the IXmlSerializable interface, you should return null (Nothing in Visual Basic) from this method, and instead, if specifying a custom schema is required, apply the <see cref="T:System.Xml.Serialization.XmlSchemaProviderAttribute" /> to the class.
+        /// This method is reserved and should not be used. When implementing the IXmlSerializable <see langword="interface"/>, you should return null (Nothing in Visual Basic) from this method, and instead, if specifying a custom schema is required, apply the <see cref="T:System.Xml.Serialization.XmlSchemaProviderAttribute" /> to the class.
         /// </summary>
         /// <returns>
         /// An <see cref="T:System.Xml.Schema.XmlSchema" /> that describes the XML representation of the object that is produced by the <see cref="M:System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)" /> method and consumed by the <see cref="M:System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)" /> method.
@@ -52,8 +51,9 @@ namespace JamSoft.CALDemo.Modules.SettingsManager
             return null;
         }
 
-        /// <summary>Generates an object from its XML representation.</summary>
+        /// <summary>Generates an <see langword="object"/> from its XML representation.</summary>
         /// <param name="reader">The <see cref="T:System.Xml.XmlReader" /> stream from which the object is deserialized.</param>
+        /// <exception cref="XmlException">An error occurred while parsing the XML.</exception>
         public void ReadXml(XmlReader reader)
         {
             _properties = new NameValueCollection();
@@ -67,7 +67,7 @@ namespace JamSoft.CALDemo.Modules.SettingsManager
             _keys = _properties.AllKeys.ToList();
         }
 
-        /// <summary>Converts an object into its XML representation.</summary>
+        /// <summary>Converts an <see langword="object"/> into its XML representation.</summary>
         /// <param name="writer">The <see cref="T:System.Xml.XmlWriter" /> stream to which the object is serialized.</param>
         public void WriteXml(XmlWriter writer)
         {
@@ -81,7 +81,7 @@ namespace JamSoft.CALDemo.Modules.SettingsManager
         }
 
         /// <summary>Sets the setting.</summary>
-        /// <param name="key">The key.</param>
+        /// <param name="key">The <paramref name="key"/>.</param>
         /// <param name="value">The value.</param>
         public void SetSetting(string key, object value)
         {
@@ -97,8 +97,8 @@ namespace JamSoft.CALDemo.Modules.SettingsManager
         }
 
         /// <summary>Gets the setting value.</summary>
-        /// <param name="key">The key.</param>
-        /// <returns></returns>
+        /// <param name="key">The <paramref name="key"/>.</param>
+        /// <returns>the setting value</returns>
         public object GetSettingValue(string key)
         {
             return _properties[key];

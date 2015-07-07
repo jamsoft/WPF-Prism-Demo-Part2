@@ -1,5 +1,4 @@
 ﻿#region File Header
-
 // ====================================================================
 // Copyright (c) 2015, James Alexander Green (JamSoft)
 // Some Rights Reserved :)
@@ -19,10 +18,13 @@ namespace JamSoft.CALDemo.Modules.Navigator
     using JamSoft.CALDemo.Modules.PageManager.Core;
 
     /// <summary>
-    /// 
+    /// The navigator view <c>interface</c>
     /// </summary>
     public interface INavigatorView
     {
+        /// <summary>Occurs when [item change request].</summary>
+        event EventHandler<PageEventArgs> ItemChangeRequest;
+
         /// <summary>Gets or sets the selected item.</summary>
         /// <value>The selected item.</value>
         IPage SelectedItem { get; set; }
@@ -30,8 +32,5 @@ namespace JamSoft.CALDemo.Modules.Navigator
         /// <summary>Sets the model.</summary>
         /// <value>The model.</value>
         INavigatorPresentationModel Model { set; }
-
-        /// <summary>Occurs when [item change request].</summary>
-        event EventHandler<PageEventArgs> ItemChangeRequest;
     }
 }

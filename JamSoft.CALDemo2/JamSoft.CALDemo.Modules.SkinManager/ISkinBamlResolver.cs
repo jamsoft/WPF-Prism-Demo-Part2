@@ -19,19 +19,19 @@ namespace JamSoft.CALDemo.Modules.SkinManager
     using System.Reflection;
 
     /// <summary>
-    ///     Interface for defining baml resolver methods
+    /// Interface for defining baml resolver methods
     /// </summary>
     public interface ISkinBamlResolver
     {
         /// <summary>Get Skins Interface Member</summary>
         /// <param name="skinAssemblyName">Name of the skin assembly.</param>
-        /// <returns></returns>
+        /// <returns>A list of Baml streams</returns>
         List<Stream> GetSkinBamlStreams(AssemblyName skinAssemblyName);
 
         /// <summary>Get Skins Interface Member</summary>
         /// <param name="skinAssemblyName">Name of the skin assembly.</param>
         /// <param name="resourceName">Name of the resource.</param>
-        /// <returns></returns>
+        /// <returns>A list of Baml streams</returns>
         List<Stream> GetSkinBamlStreams(AssemblyName skinAssemblyName, string resourceName);
     }
 }

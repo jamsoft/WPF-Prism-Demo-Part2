@@ -20,17 +20,14 @@ namespace JamSoft.CALDemo.Modules.ModuleB
 
     using Microsoft.Practices.Prism.Commands;
     using Microsoft.Practices.Prism.PubSubEvents;
-    using Microsoft.Practices.Unity;
 
     /// <summary>
+    /// The module b presenter model
     /// </summary>
     public class ModuleBPresenterModel : IModuleBPresenterModel, IPage
     {
         /// <summary>The _event aggregator</summary>
         private readonly IEventAggregator _eventAggregator;
-
-        /// <summary>The _page manager</summary>
-        private readonly IPageManager _pageManager;
 
         /// <summary>
         /// The _send message command
@@ -62,8 +59,7 @@ namespace JamSoft.CALDemo.Modules.ModuleB
             _view = view;
             _view.Model = this;
 
-            _pageManager = pageManger;
-            _pageManager.Pages.Add(this);
+            pageManger.Pages.Add(this);
 
             _sendMessageCommand = new DelegateCommand<object>(OnSendMessageCommandExecuted);
         }
@@ -123,9 +119,9 @@ namespace JamSoft.CALDemo.Modules.ModuleB
             }
         }
 
-        /// <summary>Sets a value indicating whether this instance is active page.</summary>
+        /// <summary>Sets a value indicating whether <see langword="this"/> instance is active page.</summary>
         /// <value>
-        /// <c>true</c> if this instance is active page; otherwise, <c>false</c>.
+        /// true if this instance is active page; otherwise, false.
         /// </value>
         public bool IsActivePage
         {
@@ -138,7 +134,7 @@ namespace JamSoft.CALDemo.Modules.ModuleB
         /// <summary>
         /// Called when [send message command executed].
         /// </summary>
-        /// <param name="obj">The object.</param>
+        /// <param name="obj">The <see langword="object"/>.</param>
         private void OnSendMessageCommandExecuted(object obj)
         {
             _eventAggregator.GetEvent<AppStatusMessageEvent>().Publish(_messageToSend);

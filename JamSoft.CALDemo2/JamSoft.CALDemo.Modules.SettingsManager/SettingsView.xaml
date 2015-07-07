@@ -5,7 +5,7 @@
     >
     <Grid>
         <StackPanel>
-            <ComboBox x:Name="cmbSkinPicker" 
+            <ComboBox x:Name="CmbSkinPicker" 
                       ItemsSource="{Binding Skins}" 
                       SelectedValue="{Binding Path=CurrentSkin, Mode=TwoWay}" 
                       DisplayMemberPath="Name" />

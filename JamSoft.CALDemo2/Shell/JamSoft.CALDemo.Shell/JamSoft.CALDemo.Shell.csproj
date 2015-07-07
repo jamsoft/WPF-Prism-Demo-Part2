@@ -163,7 +163,9 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="defaultsettings.settings">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <Generator>SettingsSingleFileGenerator</Generator>

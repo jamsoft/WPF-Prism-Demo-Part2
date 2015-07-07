@@ -67,8 +67,26 @@ namespace JamSoft.CALDemo.Modules.PageManager
             }
         }
 
+        /// <summary>Gets the page.</summary>
+        /// <param name="pageId">The page identifier.</param>
+        /// <returns>The IPage instance</returns>
+        public IPage GetPage(string pageId)
+        {
+            IPage selPage = null;
+            for (var i = 0; i < Pages.Count(); i++)
+            {
+                IPage p = Pages[i];
+                if (p.ID == pageId)
+                {
+                    selPage = p;
+                }
+            }
+
+            return selPage;
+        }
+
         /// <summary>
-        /// Called when [page selected].
+        /// Called when <paramref name="page"/> selected.
         /// </summary>
         /// <param name="page">The page.</param>
         private void OnPageSelected(IPage page)
@@ -83,31 +101,13 @@ namespace JamSoft.CALDemo.Modules.PageManager
         /// <summary>Sorts the pages.</summary>
         private void SortPages()
         {
-            List<IPage> p = _pages.ToList<IPage>();
+            List<IPage> p = _pages.ToList();
             p.Sort(new PagePositionComparer());
             _pages.Clear();
             foreach (IPage page in p)
             {
                 _pages.Add(page);
             }
-        }
-
-        /// <summary>Gets the page.</summary>
-        /// <param name="pageId">The page identifier.</param>
-        /// <returns></returns>
-        public IPage GetPage(string pageId)
-        {
-            IPage selPage = null;
-            for (var i = 0; i < Pages.Count(); i++)
-            {
-                IPage p = Pages[i];
-                if (p.ID == pageId)
-                {
-                    selPage = p;
-                }
-            }
-
-            return selPage;
         }
     }
 }

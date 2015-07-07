@@ -12,15 +12,15 @@
 // ====================================================================
 #endregion
 
-namespace JamSoft.CALDemo.Modules.SkinManager
+namespace JamSoft.CALDemo.Modules.SkinManager.Skins
 {
     using System;
+    using System.IO;
     using System.Reflection;
-
-    using JamSoft.CALDemo.Modules.SkinManager.Skins;
+    using System.Security;
 
     /// <summary>
-    /// 
+    /// The AppDomainAssemblySkin loading class
     /// </summary>
     public class AppDomainAssemblySkin : DirectAssemblySkin
     {
@@ -35,6 +35,21 @@ namespace JamSoft.CALDemo.Modules.SkinManager
         /// <param name="name">The name.</param>
         /// <param name="description">The description.</param>
         /// <param name="assemblyPath">The assembly path.</param>
+        /// <exception cref="ArgumentException">Invalid assembly path;assemblyPath</exception>
+        /// <exception cref="ArgumentNullException"><paramref>
+        ///         <name>assemblyFile</name>
+        ///     </paramref>
+        ///     is null. </exception>
+        /// <exception cref="FileNotFoundException"><paramref>
+        ///         <name>assemblyFile</name>
+        ///     </paramref>
+        ///     is not found. </exception>
+        /// <exception cref="SecurityException">The caller does not have path discovery permission. </exception>
+        /// <exception cref="BadImageFormatException"><paramref>
+        ///         <name>assemblyFile</name>
+        ///     </paramref>
+        ///     is not a valid assembly. </exception>
+        /// <exception cref="FileLoadException">An assembly or module was loaded twice with two different sets of evidence. </exception>
         public AppDomainAssemblySkin(string name, string description, string assemblyPath)
             : base(name, description, assemblyPath)
         {
@@ -58,8 +73,23 @@ namespace JamSoft.CALDemo.Modules.SkinManager
         /// <param name="description">The description.</param>
         /// <param name="assemblyPath">The assembly path.</param>
         /// <param name="resourceName">Name of the resource.</param>
+        /// <exception cref="ArgumentException">Invalid assembly path;assemblyPath</exception>
+        /// <exception cref="ArgumentNullException"><paramref>
+        ///         <name>assemblyFile</name>
+        ///     </paramref>
+        ///     is null. </exception>
+        /// <exception cref="FileNotFoundException"><paramref>
+        ///         <name>assemblyFile</name>
+        ///     </paramref>
+        ///     is not found. </exception>
+        /// <exception cref="SecurityException">The caller does not have path discovery permission. </exception>
+        /// <exception cref="BadImageFormatException"><paramref>
+        ///         <name>assemblyFile</name>
+        ///     </paramref>
+        ///     is not a valid assembly. </exception>
+        /// <exception cref="FileLoadException">An assembly or module was loaded twice with two different sets of evidence. </exception>
         public AppDomainAssemblySkin(string name, string description, string assemblyPath, string resourceName)
-            : base(name, assemblyPath, resourceName)
+            : base(name, description, assemblyPath, resourceName)
         {
         }
 
@@ -76,19 +106,53 @@ namespace JamSoft.CALDemo.Modules.SkinManager
         }
 
         /// <summary>Pres the load resources.</summary>
-        /// <returns></returns>
+        /// <returns>the <see cref="ISkinBamlResolver"/> instance</returns>
+        /// <exception cref="ArgumentNullException"><paramref>
+        ///         <name>assemblyName</name>
+        ///     </paramref>
+        ///     or <paramref>
+        ///         <name>typeName</name>
+        ///     </paramref>
+        ///     is null. </exception>
+        /// <exception cref="MissingMethodException">No matching public constructor was found. </exception>
+        /// <exception cref="TypeLoadException"><paramref>
+        ///         <name>typename</name>
+        ///     </paramref>
+        ///     was not found in <paramref>
+        ///         <name>assemblyName</name>
+        ///     </paramref>
+        ///     . </exception>
+        /// <exception cref="FileNotFoundException"><paramref>
+        ///         <name>assemblyName</name>
+        ///     </paramref>
+        ///     was not found. </exception>
+        /// <exception cref="MethodAccessException">The caller does not have permission to call this constructor. </exception>
+        /// <exception cref="AppDomainUnloadedException">The operation is attempted on an unloaded application domain. </exception>
+        /// <exception cref="BadImageFormatException"><paramref>
+        ///         <name>assemblyName</name>
+        ///     </paramref>
+        ///     is not a valid assembly. -or-Version 2.0 or later of the common language runtime is currently loaded and <paramref>
+        ///         <name>assemblyName</name>
+        ///     </paramref>
+        ///     was compiled with a later version.</exception>
+        /// <exception cref="FileLoadException">An assembly or module was loaded twice with two different evidences. </exception>
         protected override ISkinBamlResolver PreLoadResources()
         {
             _assemblySkinDomain = AppDomain.CreateDomain(Name);
-            var skinResolver =
-                (ISkinBamlResolver)
-                _assemblySkinDomain.CreateInstanceAndUnwrap(
-                    Assembly.GetExecutingAssembly().FullName, 
-                    typeof(SkinBamlResolver).FullName);
+            var skinResolver = (ISkinBamlResolver)_assemblySkinDomain.CreateInstanceAndUnwrap(Assembly.GetExecutingAssembly().FullName, typeof(SkinBamlResolver).FullName);
             return skinResolver;
         }
 
         /// <summary>Posts the load resources.</summary>
+        /// <exception cref="ArgumentNullException"><paramref>
+        ///         <name>domain</name>
+        ///     </paramref>
+        ///     is <c>null</c>. </exception>
+        /// <exception cref="CannotUnloadAppDomainException"><paramref>
+        ///         <name>domain</name>
+        ///     </paramref>
+        ///     could not be unloaded. </exception>
+        /// <exception cref="Exception">An error occurred during the unload process.</exception>
         protected override void PostLoadResources()
         {
             if (_assemblySkinDomain != null)

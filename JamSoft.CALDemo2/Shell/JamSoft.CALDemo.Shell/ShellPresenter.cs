@@ -15,6 +15,7 @@
 namespace JamSoft.CALDemo
 {
     /// <summary>
+    /// The shell presenter class
     /// </summary>
     public class ShellPresenter
     {
