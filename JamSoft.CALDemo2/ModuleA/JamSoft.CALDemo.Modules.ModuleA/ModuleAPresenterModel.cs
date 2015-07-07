@@ -18,19 +18,14 @@ namespace JamSoft.CALDemo.Modules.ModuleA
     using JamSoft.CALDemo.Modules.PageManager.Core;
 
     /// <summary>
+    /// The moduleA presenter model
     /// </summary>
     public class ModuleAPresenterModel : IModuleAPresenterModel, IPage
     {
-        /// <summary>
-        /// </summary>
-        private readonly IPageManager _pageManager;
-
-        /// <summary>
-        /// </summary>
+        /// <summary>The _view</summary>
         private readonly IModuleAView _view;
 
-        /// <summary>
-        /// </summary>
+        /// <summary>The _is active page</summary>
         private bool _isActivePage;
 
         /// <summary>
@@ -45,8 +40,7 @@ namespace JamSoft.CALDemo.Modules.ModuleA
             _view = view;
             _view.Model = this;
 
-            _pageManager = pageManager;
-            _pageManager.Pages.Add(this);
+            pageManager.Pages.Add(this);
         }
 
         /// <summary>Gets the identifier.</summary>

@@ -17,10 +17,10 @@ namespace JamSoft.CALDemo.Modules.ModuleA
     using JamSoft.CALDemo.Modules.ModuleA.Core;
 
     using Microsoft.Practices.Prism.Modularity;
-    using Microsoft.Practices.Prism.PubSubEvents;
     using Microsoft.Practices.Unity;
 
     /// <summary>
+    /// The ModuleA initializer class
     /// </summary>
     [Module(ModuleName = "ModuleA")]
     [ModuleDependency("PageManagerModule")]
@@ -32,7 +32,9 @@ namespace JamSoft.CALDemo.Modules.ModuleA
         /// <summary>
         /// Initializes a new instance of the <see cref="ModuleAModule"/> class.
         /// </summary>
-        /// <param name="container">The container.</param>
+        /// <param name="container">
+        /// The container.
+        /// </param>
         public ModuleAModule(IUnityContainer container)
         {
             _container = container;

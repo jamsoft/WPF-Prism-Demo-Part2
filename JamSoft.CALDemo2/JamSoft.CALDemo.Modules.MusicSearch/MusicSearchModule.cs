@@ -20,6 +20,7 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
     using Microsoft.Practices.Unity;
 
     /// <summary>
+    /// The music search module initializer class
     /// </summary>
     [Module(ModuleName = "MusicSearchModule")]
     [ModuleDependency("ToolBarModule")]

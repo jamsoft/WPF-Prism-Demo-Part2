@@ -18,21 +18,14 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
     using JamSoft.CALDemo.Modules.PageManager.Core;
 
     using Microsoft.Practices.Prism.PubSubEvents;
-    using Microsoft.Practices.Unity;
 
     /// <summary>
     /// The music search presenter
     /// </summary>
     public class MusicSearchPresenter : IPage, IMusicSearchPresenter
     {
-        /// <summary>The _event aggregator</summary>
-        private readonly IEventAggregator _eventAggregator;
-
         /// <summary>The _model</summary>
         private readonly IMusicSearchPresenterModel _model;
-
-        /// <summary>The _page manager</summary>
-        private readonly IPageManager _pageManager;
 
         /// <summary>The _view</summary>
         private readonly IMusicSearchView _view;
@@ -53,21 +46,18 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
             IMusicSearchView view, 
             IPageManager pageManager)
         {
-            _eventAggregator = eventAggregator;
-
             _model = model;
 
-            _pageManager = pageManager;
-            _pageManager.Pages.Add(this);
+            pageManager.Pages.Add(this);
 
             _view = view;
             _view.Model = _model;
 
-            _eventAggregator.GetEvent<PageSelectedEvent>().Subscribe(OnPageSelected, ThreadOption.UIThread);
+            eventAggregator.GetEvent<PageSelectedEvent>().Subscribe(OnPageSelected, ThreadOption.UIThread);
         }
 
-        /// <summary>
-        /// </summary>
+        /// <summary>Gets the Page ID</summary>
+        /// <value>The identifier.</value>
         public string ID
         {
             get
@@ -76,8 +66,8 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
             }
         }
 
-        /// <summary>
-        /// </summary>
+        /// <summary>Gets the position.</summary>
+        /// <value>The position.</value>
         public float Position
         {
             get
@@ -86,8 +76,8 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
             }
         }
 
-        /// <summary>
-        /// </summary>
+        /// <summary>Gets the view.</summary>
+        /// <value>The view.</value>
         public object View
         {
             get
@@ -96,8 +86,10 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
             }
         }
 
-        /// <summary>
-        /// </summary>
+        /// <summary>Sets a value indicating whether <c>this</c> instance is active page.</summary>
+        /// <value>
+        /// <c>true</c> if <c>this</c> instance is active page; otherwise, <c>false</c>.
+        /// </value>
         public bool IsActivePage
         {
             set
@@ -107,9 +99,9 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
         }
 
         /// <summary>
+        /// Called when <paramref name="page"/> is selected.
         /// </summary>
-        /// <param name="page">
-        /// </param>
+        /// <param name="page">The <paramref name="page"/>.</param>
         private void OnPageSelected(IPage page)
         {
             if (page == this)
@@ -118,7 +110,7 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
             }
             else
             {
-                _model.DeactiveModel();
+                _model.DeactivateModel();
             }
         }
     }

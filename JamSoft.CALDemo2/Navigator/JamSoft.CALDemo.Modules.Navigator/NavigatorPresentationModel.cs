@@ -14,7 +14,6 @@
 
 namespace JamSoft.CALDemo.Modules.Navigator
 {
-    using System;
     using System.Collections.ObjectModel;
 
     using JamSoft.CALDemo.Modules.PageManager.Core;
@@ -22,6 +21,7 @@ namespace JamSoft.CALDemo.Modules.Navigator
     using Microsoft.Practices.Prism.PubSubEvents;
 
     /// <summary>
+    /// The navigator presentation model
     /// </summary>
     public class NavigatorPresentationModel : INavigatorPresentationModel
     {
@@ -49,42 +49,14 @@ namespace JamSoft.CALDemo.Modules.Navigator
             _pageManger = pageManger;
 
             _view = view;
-            _view.ItemChangeRequest += new EventHandler<PageEventArgs>(view_ItemChangeRequest);
+            _view.ItemChangeRequest += ViewItemChangeRequest;
             _view.Model = this;
 
             _eventAggregator.GetEvent<PageSelectedEvent>().Subscribe(OnPageSelected, ThreadOption.UIThread);
         }
 
-        #region Page Selection Bits
-
-        /// <summary>
-        /// Called when [page selected].
-        /// </summary>
-        /// <param name="page">The page.</param>
-        private void OnPageSelected(IPage page)
-        {
-            _view.SelectedItem = page;
-        }
-
-        /// <summary>Handles the ItemChangeRequest event of the view control.</summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="PageEventArgs"/> instance containing the event data.</param>
-        private void view_ItemChangeRequest(object sender, PageEventArgs e)
-        {
-            OnItemChangeRequest(e.Page);
-        }
-
-        /// <summary>
-        /// Called when [item change request].
-        /// </summary>
-        /// <param name="page">The page.</param>
-        private void OnItemChangeRequest(IPage page)
-        {
-            _eventAggregator.GetEvent<PageRequestEvent>().Publish(page);
-        }
-
-        /// <summary>
-        /// </summary>
+        /// <summary>Gets the view.</summary>
+        /// <value>The view.</value>
         public INavigatorView View
         {
             get
@@ -93,14 +65,42 @@ namespace JamSoft.CALDemo.Modules.Navigator
             }
         }
 
-        /// <summary>
-        /// </summary>
+        /// <summary>Gets the pages.</summary>
+        /// <value>The pages.</value>
         public ObservableCollection<IPage> Pages
         {
             get
             {
                 return _pageManger.Pages;
             }
+        }
+
+        #region Page Selection Bits
+
+        /// <summary>
+        /// Called when the page is selected.
+        /// </summary>
+        /// <param name="page">The <paramref name="page"/>.</param>
+        private void OnPageSelected(IPage page)
+        {
+            _view.SelectedItem = page;
+        }
+
+        /// <summary>Handles the ItemChangeRequest event of the view control.</summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="PageEventArgs"/> instance containing the event data.</param>
+        private void ViewItemChangeRequest(object sender, PageEventArgs e)
+        {
+            OnItemChangeRequest(e.Page);
+        }
+
+        /// <summary>
+        /// Called when [item change request].
+        /// </summary>
+        /// <param name="page">The <paramref name="page"/>.</param>
+        private void OnItemChangeRequest(IPage page)
+        {
+            _eventAggregator.GetEvent<PageRequestEvent>().Publish(page);
         }
 
         #endregion

@@ -1,5 +1,4 @@
 ﻿#region File Header
-
 // ====================================================================
 // Copyright (c) 2015, James Alexander Green (JamSoft)
 // Some Rights Reserved :)
@@ -19,10 +18,8 @@ namespace JamSoft.CALDemo.Modules.Navigator
 
     using JamSoft.CALDemo.Modules.PageManager.Core;
 
-    /// <summary>
-    ///     Interaction logic for NavigatorView.xaml
-    /// </summary>
-    public partial class NavigatorView : UserControl, INavigatorView
+    /// <summary>Interaction logic for NavigatorView.xaml</summary>
+    public partial class NavigatorView : INavigatorView
     {
         /// <summary>The _model</summary>
         private INavigatorPresentationModel _model;
@@ -41,8 +38,8 @@ namespace JamSoft.CALDemo.Modules.Navigator
         /// <summary>Occurs when [item change request].</summary>
         public event EventHandler<PageEventArgs> ItemChangeRequest;
 
-        /// <summary>
-        /// </summary>
+        /// <summary>Sets or sets the model.</summary>
+        /// <value>The model.</value>
         public INavigatorPresentationModel Model
         {
             get
@@ -57,8 +54,8 @@ namespace JamSoft.CALDemo.Modules.Navigator
             }
         }
 
-        /// <summary>
-        /// </summary>
+        /// <summary>Gets or sets the selected item.</summary>
+        /// <value>The selected item.</value>
         public IPage SelectedItem
         {
             get
@@ -76,7 +73,7 @@ namespace JamSoft.CALDemo.Modules.Navigator
         /// <summary>
         /// Called when [item change request].
         /// </summary>
-        /// <param name="page">The page.</param>
+        /// <param name="page">The <paramref name="page"/>.</param>
         private void OnItemChangeRequest(IPage page)
         {
             if (ItemChangeRequest != null)
@@ -86,7 +83,7 @@ namespace JamSoft.CALDemo.Modules.Navigator
         }
 
         /// <summary>Sets the ListView item without event.</summary>
-        /// <param name="page">The page.</param>
+        /// <param name="page">The <paramref name="page"/>.</param>
         private void SetListViewItemWithoutEvent(IPage page)
         {
             theListView.SelectedItem = page;
@@ -97,7 +94,7 @@ namespace JamSoft.CALDemo.Modules.Navigator
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="SelectionChangedEventArgs"/> instance containing the event data.</param>
-        private void theListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void TheListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             IPage listBoxSelectedPage = theListView.SelectedItem as IPage;
 

@@ -19,12 +19,12 @@ namespace JamSoft.CALDemo.Modules.PageManager
     using JamSoft.CALDemo.Modules.PageManager.Core;
 
     /// <summary>
-    /// 
+    /// Compares the page position value in order to sort the menu contents based on the desired position in the UI
     /// </summary>
     internal class PagePositionComparer : Comparer<IPage>
     {
         /// <summary>
-        /// When overridden in a derived class, performs a comparison of two objects of the same type and returns a value indicating whether one object is less than, equal to, or greater than the other.
+        /// When overridden in a derived class, performs a comparison of two objects of the same type and returns a value indicating whether one <see langword="object"/> is less than, equal to, or greater than the other.
         /// </summary>
         /// <param name="x">The first object to compare.</param>
         /// <param name="y">The second object to compare.</param>
@@ -33,14 +33,17 @@ namespace JamSoft.CALDemo.Modules.PageManager
         /// </returns>
         public override int Compare(IPage x, IPage y)
         {
-            if (object.Equals(x, y))
+            if (x == null || y == null)
             {
                 return 0;
             }
-            else
+
+            if (Equals(x, y))
             {
-                return x.Position.CompareTo(y.Position);
+                return 0;
             }
+            
+            return x.Position.CompareTo(y.Position);
         }
     }
 }

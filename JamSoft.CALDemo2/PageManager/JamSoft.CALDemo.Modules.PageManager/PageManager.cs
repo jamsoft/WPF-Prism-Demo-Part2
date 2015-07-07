@@ -23,6 +23,7 @@ namespace JamSoft.CALDemo.Modules.PageManager
     using Microsoft.Practices.Prism.PubSubEvents;
 
     /// <summary>
+    /// The page manager class
     /// </summary>
     public class PageManager : IPageManager
     {

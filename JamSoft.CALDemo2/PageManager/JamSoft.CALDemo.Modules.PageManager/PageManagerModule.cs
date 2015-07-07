@@ -20,17 +20,13 @@ namespace JamSoft.CALDemo.Modules.PageManager
     using Microsoft.Practices.Unity;
 
     /// <summary>
+    /// The page manager module initializer
     /// </summary>
     [Module(ModuleName = "PageManagerModule", OnDemand = false)]
     public class PageManagerModule : IModule
     {
         /// <summary>The _container</summary>
         private readonly IUnityContainer _container;
-
-        /// <summary>
-        /// The _main region controller
-        /// </summary>
-        private MainRegionController _mainRegionController;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PageManagerModule"/> class.
@@ -52,10 +48,10 @@ namespace JamSoft.CALDemo.Modules.PageManager
         }
 
         /// <summary>Registers the views and services.</summary>
-        protected void RegisterViewsAndServices()
+        private void RegisterViewsAndServices()
         {
             _container.RegisterType<IPageManager, PageManager>(new ContainerControlledLifetimeManager());
-            _mainRegionController = _container.Resolve<MainRegionController>();
+            _container.Resolve<MainRegionController>();
         }
     }
 }

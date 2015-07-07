@@ -15,7 +15,7 @@
 namespace JamSoft.CALDemo.Modules.PageManager
 {
     /// <summary>
-    /// 
+    /// THe main region controller
     /// </summary>
     public interface IMainRegionController
     {

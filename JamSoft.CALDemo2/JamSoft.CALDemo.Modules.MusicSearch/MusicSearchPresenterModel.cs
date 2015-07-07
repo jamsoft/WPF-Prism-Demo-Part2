@@ -1,5 +1,4 @@
 ﻿#region File Header
-
 // ====================================================================
 // Copyright (c) 2015, James Alexander Green (JamSoft)
 // Some Rights Reserved :)
@@ -35,12 +34,53 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
     /// </summary>
     public class MusicSearchPresenterModel : IMusicSearchPresenterModel, INotifyPropertyChanged
     {
-        #region ToolBar Bits
+        /// <summary>The _event aggregator</summary>
+        private readonly IEventAggregator _eventAggregator;
+
+        /// <summary>
+        /// The _toolbar presentation model
+        /// </summary>
+        private readonly IToolBarPresentationModel _toolbarPresentationModel;
+
+        /// <summary>
+        /// The _search for artist command
+        /// </summary>
+        private readonly DelegateCommand<object> _searchForArtistCommand;
+
+        /// <summary>
+        /// The _clear artist information command
+        /// </summary>
+        private readonly DelegateCommand<object> _clearArtistInfoCommand;
+
+        /// <summary>
+        /// The _search for artist releases command
+        /// </summary>
+        private readonly DelegateCommand<object> _searchForArtistReleasesCommand;
 
         /// <summary>The _clear stuff</summary>
         private Button _clearStuff;
 
-        #endregion
+        /// <summary>The _artist search term</summary>
+        private string _artistSearchTerm;
+
+        /// <summary>The _releases</summary>
+        private ObservableCollection<BindableRelease> _releases;
+
+        /// <summary>The _artists</summary>
+        private ObservableCollection<BindableArtist> _artists;
+
+        /// <summary>The _selected artist</summary>
+        private BindableArtist _selectedArtist;
+
+        /// <summary>
+        /// The _can clear artist information
+        /// </summary>
+        private bool _canClearArtistInfo;
+
+        /// <summary>
+        /// The _can search for artist releases
+        /// </summary>
+        private bool _canSearchForArtistReleases;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MusicSearchPresenterModel" /> class.
@@ -48,7 +88,7 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="toolbarPresentationModel">The toolbar presentation model.</param>
         public MusicSearchPresenterModel(
-            IEventAggregator eventAggregator, 
+            IEventAggregator eventAggregator,
             IToolBarPresentationModel toolbarPresentationModel)
         {
             _eventAggregator = eventAggregator;
@@ -59,38 +99,8 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
             _clearArtistInfoCommand = new DelegateCommand<object>(ClearArtistInfoCommandExecuted, ClearArtistInfoCommandCanExecute);
         }
 
-        #region Activate Model
-
-        /// <summary>Activates the model.</summary>
-        public void ActivateModel()
-        {
-            RegisterClearArtistsInfoButton();
-        }
-
-        #endregion
-
-        #region De-Activate Model
-
-        /// <summary>Deactives the model.</summary>
-        public void DeactiveModel()
-        {
-            DeRegisterClearArtistsInfoButton();
-        }
-
-        #endregion
-
-        #region Data
-
-        /// <summary>The _event aggregator</summary>
-        private readonly IEventAggregator _eventAggregator;
-
-        /// <summary>
-        /// The _toolbar presentation model
-        /// </summary>
-        private readonly IToolBarPresentationModel _toolbarPresentationModel;
-
-        /// <summary>The _artist search term</summary>
-        private string _artistSearchTerm;
+        /// <summary>Occurs when a property value changes.</summary>
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>Gets or sets the artist search term.</summary>
         /// <value>The artist search term.</value>
@@ -106,9 +116,6 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
                 _artistSearchTerm = value;
             }
         }
-
-        /// <summary>The _selected artist</summary>
-        private BindableArtist _selectedArtist;
 
         /// <summary>Gets or sets the selected artist.</summary>
         /// <value>The selected artist.</value>
@@ -127,11 +134,6 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
             }
         }
 
-        /// <summary>
-        /// The _search for artist command
-        /// </summary>
-        private readonly DelegateCommand<object> _searchForArtistCommand;
-
         /// <summary>Gets the search for artist command.</summary>
         /// <value>The search for artist command.</value>
         public DelegateCommand<object> SearchForArtistCommand
@@ -141,16 +143,6 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
                 return _searchForArtistCommand;
             }
         }
-
-        /// <summary>
-        /// The _can clear artist information
-        /// </summary>
-        private bool _canClearArtistInfo = false;
-
-        /// <summary>
-        /// The _clear artist information command
-        /// </summary>
-        private readonly DelegateCommand<object> _clearArtistInfoCommand;
 
         /// <summary>Gets the clear artist information command.</summary>
         /// <value>The clear artist information command.</value>
@@ -162,16 +154,6 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
             }
         }
 
-        /// <summary>
-        /// The _can search for artist releases
-        /// </summary>
-        private bool _canSearchForArtistReleases = false;
-
-        /// <summary>
-        /// The _search for artist releases command
-        /// </summary>
-        private readonly DelegateCommand<object> _searchForArtistReleasesCommand;
-
         /// <summary>Gets the search for artist releases command.</summary>
         /// <value>The search for artist releases command.</value>
         public DelegateCommand<object> SearchForArtistReleasesCommand
@@ -181,9 +163,6 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
                 return _searchForArtistReleasesCommand;
             }
         }
-
-        /// <summary>The _artists</summary>
-        private ObservableCollection<BindableArtist> _artists;
 
         /// <summary>Gets the artists.</summary>
         /// <value>The artists.</value>
@@ -201,11 +180,9 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
             }
         }
 
-        /// <summary>The _releases</summary>
-        private ObservableCollection<BindableRelease> _releases;
-
         /// <summary>Gets or sets the releases.</summary>
         /// <value>The releases.</value>
+        // ReSharper disable once MemberCanBePrivate.Global
         public ObservableCollection<BindableRelease> Releases
         {
             get
@@ -220,12 +197,30 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
             }
         }
 
+        #region Activate Model
+
+        /// <summary>Activates the model.</summary>
+        public void ActivateModel()
+        {
+            RegisterClearArtistsInfoButton();
+        }
+
+        #endregion
+
+        #region De-Activate Model
+
+        /// <summary>Deactives the model.</summary>
+        public void DeactivateModel()
+        {
+            DeRegisterClearArtistsInfoButton();
+        }
+
         #endregion
 
         #region Artist Search
 
         /// <summary>Searches for artist command executed.</summary>
-        /// <param name="obj">The object.</param>
+        /// <param name="obj">The <see langword="object"/>.</param>
         private void SearchForArtistCommandExecuted(object obj)
         {
             PerformArtistQueryAsync(ArtistSearchCallback, new object());
@@ -252,26 +247,25 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
         /// <summary>Performs the artist query asynchronous.</summary>
         /// <param name="callback">The <paramref name="callback"/>.</param>
         /// <param name="userState">State of the user.</param>
-        public void PerformArtistQueryAsync(Action<object, ArtistSearchCompletedEventArgs> callback, object userState)
+        private void PerformArtistQueryAsync(Action<object, ArtistSearchCompletedEventArgs> callback, object userState)
         {
             ThreadPool.QueueUserWorkItem(
-                new WaitCallback(
-                    (obj) =>
+                obj =>
+                    {
+                        try
                         {
-                            try
-                            {
-                                _eventAggregator.GetEvent<AppStatusMessageEvent>()
-                                    .Publish("Getting Artists: " + _artistSearchTerm);
+                            _eventAggregator.GetEvent<AppStatusMessageEvent>()
+                                .Publish("Getting Artists: " + _artistSearchTerm);
 
-                                var results = Artist.Query(_artistSearchTerm);
+                            var results = Artist.Query(_artistSearchTerm);
 
-                                callback(this, new ArtistSearchCompletedEventArgs(new List<Artist>(results), userState));
-                            }
-                            catch (Exception ex)
-                            {
-                                callback(this, new ArtistSearchCompletedEventArgs(ex, false, userState));
-                            }
-                        }));
+                            callback(this, new ArtistSearchCompletedEventArgs(new List<Artist>(results), userState));
+                        }
+                        catch (Exception ex)
+                        {
+                            callback(this, new ArtistSearchCompletedEventArgs(ex, false, userState));
+                        }
+                    });
         }
 
         #endregion
@@ -279,7 +273,7 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
         #region Releases Search
 
         /// <summary>Searches for artist releases command executed.</summary>
-        /// <param name="obj">The object.</param>
+        /// <param name="obj">The <see langword="object"/>.</param>
         private void SearchForArtistReleasesCommandExecuted(object obj)
         {
             _canSearchForArtistReleases = false;
@@ -289,17 +283,17 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
         }
 
         /// <summary>Searches for artist releases command can execute.</summary>
-        /// <param name="obj">The object.</param>
-        /// <returns></returns>
+        /// <param name="obj">The <see langword="object"/>.</param>
+        /// <returns><see langword="true"/> if can be executed</returns>
         private bool SearchForArtistReleasesCommandCanExecute(object obj)
         {
             return _canSearchForArtistReleases;
         }
 
-        /// <summary>Artists the releases search callback.</summary>
-        /// <param name="sender">The sender.</param>
+        /// <summary><c>Artists</c> the releases search callback.</summary>
+        /// <param name="sender">The <paramref name="sender"/>.</param>
         /// <param name="args">The <see cref="ArtistReleasesSearchCompletedEventArgs"/> instance containing the event data.</param>
-        public void ArtistReleasesSearchCallback(object sender, ArtistReleasesSearchCompletedEventArgs args)
+        private void ArtistReleasesSearchCallback(object sender, ArtistReleasesSearchCompletedEventArgs args)
         {
             if (args.Error == null)
             {
@@ -311,32 +305,31 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
         }
 
         /// <summary>Performs the artist release query asynchronous.</summary>
-        /// <param name="callback">The callback.</param>
+        /// <param name="callback">The <paramref name="callback"/>.</param>
         /// <param name="userState">State of the user.</param>
-        public void PerformArtistReleaseQueryAsync(
+        private void PerformArtistReleaseQueryAsync(
             Action<object, ArtistReleasesSearchCompletedEventArgs> callback, 
             object userState)
         {
             ThreadPool.QueueUserWorkItem(
-                new WaitCallback(
-                    (obj) =>
+                obj =>
+                    {
+                        try
                         {
-                            try
-                            {
-                                _eventAggregator.GetEvent<AppStatusMessageEvent>()
-                                    .Publish("Getting Releases For: " + _artistSearchTerm);
+                            _eventAggregator.GetEvent<AppStatusMessageEvent>()
+                                .Publish("Getting Releases For: " + _artistSearchTerm);
 
-                                var results = Release.Query(_selectedArtist.Name);
+                            var results = Release.Query(_selectedArtist.Name);
 
-                                callback(
-                                    this, 
-                                    new ArtistReleasesSearchCompletedEventArgs(new List<Release>(results), userState));
-                            }
-                            catch (Exception ex)
-                            {
-                                callback(this, new ArtistReleasesSearchCompletedEventArgs(ex, false, userState));
-                            }
-                        }));
+                            callback(
+                                this, 
+                                new ArtistReleasesSearchCompletedEventArgs(new List<Release>(results), userState));
+                        }
+                        catch (Exception ex)
+                        {
+                            callback(this, new ArtistReleasesSearchCompletedEventArgs(ex, false, userState));
+                        }
+                    });
         }
 
         #endregion
@@ -372,7 +365,7 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
         #region Clear Artist Info
 
         /// <summary>Clears the artist information command executed.</summary>
-        /// <param name="obj">The object.</param>
+        /// <param name="obj">The <see langword="object"/>.</param>
         private void ClearArtistInfoCommandExecuted(object obj)
         {
             if (_artists != null)
@@ -404,9 +397,6 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
         #endregion
 
         #region INotifyPropertyChanged Members
-
-        /// <summary>Occurs when a property value changes.</summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>Notifies the property changed.</summary>
         /// <param name="info">The information.</param>

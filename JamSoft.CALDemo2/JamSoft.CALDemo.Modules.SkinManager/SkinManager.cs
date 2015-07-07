@@ -22,6 +22,7 @@ namespace JamSoft.CALDemo.Modules.SkinManager
     using JamSoft.CALDemo.Modules.SkinManager.Core;
 
     /// <summary>
+    /// The skin manager class
     /// </summary>
     public class SkinManager : DependencyObject, ISkinManager
     {
@@ -34,6 +35,9 @@ namespace JamSoft.CALDemo.Modules.SkinManager
             typeof(SkinManager), 
             new UIPropertyMetadata(Skin.Null, OnCurrentSkinChanged, OnCoerceSkinValue));
 
+        /// <summary>The default skin name</summary>
+        private const string DefaultSkinName = "Default";
+
         /// <summary>The _skin finder</summary>
         private readonly SkinsFinder _skinFinder = new SkinsFinder();
 
@@ -45,7 +49,7 @@ namespace JamSoft.CALDemo.Modules.SkinManager
         /// </summary>
         public SkinManager()
         {
-            Init();
+            Initialize();
         }
 
         /// <summary>Gets the skins.</summary>
@@ -73,12 +77,20 @@ namespace JamSoft.CALDemo.Modules.SkinManager
             }
         }
 
+        /// <summary>Loads the specified skin or the default if specified skin isn't found.</summary>
+        /// <param name="skinName">Name of the skin.</param>
+        public void LoadSkin(string skinName)
+        {
+            var skin = _skins.FirstOrDefault(x => x.Name.Equals(skinName)) ?? _skins.FirstOrDefault(x => x.Name == DefaultSkinName);
+            CurrentSkin = skin;
+        }
+
         /// <summary>
         /// Called when [coerce skin value].
         /// </summary>
-        /// <param name="d">The d.</param>
-        /// <param name="baseValue">The base value.</param>
-        /// <returns></returns>
+        /// <param name="d">The <paramref name="d"/>.</param>
+        /// <param name="baseValue">The <c>base</c> value.</param>
+        /// <returns>the coerced skin <see langword="object"/></returns>
         private static object OnCoerceSkinValue(DependencyObject d, object baseValue)
         {
             if (baseValue == null)
@@ -110,21 +122,10 @@ namespace JamSoft.CALDemo.Modules.SkinManager
         }
 
         /// <summary>Initializes this instance.</summary>
-        private void Init()
+        private void Initialize()
         {
             _skinFinder.Init();
             _skins = _skinFinder.SkinsList;
-        }
-
-        /// <summary>Loads the skin.</summary>
-        /// <param name="skinName">Name of the skin.</param>
-        public void LoadSkin(string skinName)
-        {
-            Skin skin = _skins.FirstOrDefault(x => x.Name.Equals(skinName));
-            if (skin != null)
-            {
-                CurrentSkin = skin;
-            }
         }
     }
 }

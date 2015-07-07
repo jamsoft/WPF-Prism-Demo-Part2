@@ -18,9 +18,9 @@ namespace JamSoft.CALDemo.Modules.PageManager
 
     using Microsoft.Practices.Prism.PubSubEvents;
     using Microsoft.Practices.Prism.Regions;
-    using Microsoft.Practices.Unity;
 
     /// <summary>
+    /// The Main region controller
     /// </summary>
     public class MainRegionController : IMainRegionController
     {
@@ -39,8 +39,12 @@ namespace JamSoft.CALDemo.Modules.PageManager
         /// <summary>
         /// Initializes a new instance of the <see cref="MainRegionController"/> class.
         /// </summary>
-        /// <param name="regionManager">The region manager.</param>
-        /// <param name="eventAggregator">The event aggregator.</param>
+        /// <param name="regionManager">
+        /// The region manager.
+        /// </param>
+        /// <param name="eventAggregator">
+        /// The event aggregator.
+        /// </param>
         public MainRegionController(
             IRegionManager regionManager, 
             IEventAggregator eventAggregator)
@@ -51,15 +55,19 @@ namespace JamSoft.CALDemo.Modules.PageManager
             Initialize();
         }
 
-        /// <summary>Initializes this instance.</summary>
+        /// <summary>Initializes <c>this</c> instance.</summary>
         private void Initialize()
         {
             _eventAggregator.GetEvent<PageSelectedEvent>().Subscribe(PageSelected, ThreadOption.UIThread, true);
             _mainRegion = _regionManager.Regions["MainRegion"];
         }
 
-        /// <summary>Pages the selected.</summary>
-        /// <param name="page">The page.</param>
+        /// <summary>
+        /// Pages the selected.
+        /// </summary>
+        /// <param name="page">
+        /// The <paramref name="page"/>.
+        /// </param>
         private void PageSelected(IPage page)
         {
             if (page != null)
@@ -68,8 +76,12 @@ namespace JamSoft.CALDemo.Modules.PageManager
             }
         }
 
-        /// <summary>Shows the page.</summary>
-        /// <param name="page">The page.</param>
+        /// <summary>
+        /// Shows the <paramref name="page"/>.
+        /// </summary>
+        /// <param name="page">
+        /// The page.
+        /// </param>
         private void ShowPage(IPage page)
         {
             object newView = page.View;

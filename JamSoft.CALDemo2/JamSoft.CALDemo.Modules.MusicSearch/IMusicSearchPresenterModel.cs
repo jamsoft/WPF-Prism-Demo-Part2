@@ -23,6 +23,6 @@ namespace JamSoft.CALDemo.Modules.MusicSearch
         void ActivateModel();
 
         /// <summary>Deactives the model.</summary>
-        void DeactiveModel();
+        void DeactivateModel();
     }
 }

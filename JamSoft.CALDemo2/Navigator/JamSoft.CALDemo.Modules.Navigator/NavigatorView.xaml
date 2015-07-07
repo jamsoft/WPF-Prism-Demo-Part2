@@ -18,7 +18,7 @@
                  ItemContainerStyle="{DynamicResource NavListBoxItemStyle}"
                  BorderThickness="0"
                  VerticalAlignment="Stretch" 
-                 SelectionChanged="theListView_SelectionChanged"
+                 SelectionChanged="TheListViewSelectionChanged"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                  BorderBrush="{x:Null}" >
             
