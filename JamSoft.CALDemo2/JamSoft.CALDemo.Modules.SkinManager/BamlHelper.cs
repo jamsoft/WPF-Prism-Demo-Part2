@@ -14,39 +14,27 @@
 
 namespace JamSoft.CALDemo.Modules.SkinManager
 {
+    using System;
     using System.IO;
-    using System.Reflection;
     using System.Windows.Baml2006;
     using System.Xaml;
 
-    using XamlReader = System.Windows.Markup.XamlReader;
-
     /// <summary>
+    /// A helper class to load objects from baml
     /// </summary>
     public static class BamlHelper
     {
-        /// <summary>The load baml method</summary>
-        private static readonly MethodInfo LoadBamlMethod;
-
-        /// <summary>Initializes the <see cref="BamlHelper"/> class.</summary>
-        static BamlHelper()
-        {
-            var type = typeof(XamlReader);
-            // Hope that Microsoft will not change this in the future, or at least provide an official way to load baml
-            LoadBamlMethod = type.GetMethod("LoadBaml", BindingFlags.NonPublic | BindingFlags.Static);
-        }
-
         /// <summary>Loads the baml.</summary>
         /// <typeparam name="TRoot">The type of the root.</typeparam>
-        /// <param name="stream">The stream.</param>
-        /// <returns></returns>
+        /// <param name="stream">The <paramref name="stream"/>.</param>
+        /// <returns>the loaded <see langword="object"/> parameter</returns>
+        /// <exception cref="ArgumentNullException"><paramref>
+        ///         <name>reader</name>
+        ///     </paramref>
+        ///     is null.</exception>
+        /// <exception cref="NotImplementedException">The default implementation encountered a <see cref="T:System.Xaml.XamlNodeType" /> that is not in the default enumeration.</exception>
         internal static TRoot LoadBaml<TRoot>(Stream stream)
         {
-            //var parserContext = new ParserContext();
-            //var parameters = new object[] { stream, parserContext, null, false };
-            //var bamlRoot = LoadBamlMethod.Invoke(null, parameters);
-            //return (TRoot)bamlRoot;
-
             var reader = new Baml2006Reader(stream);
             var writer = new XamlObjectWriter(reader.SchemaContext);
             while (reader.Read())
