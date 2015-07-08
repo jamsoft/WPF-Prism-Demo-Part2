@@ -19,7 +19,7 @@
                             SnapsToDevicePixels="true" 
                             BorderThickness="{TemplateBinding BorderThickness}" 
                             Padding="0" 
-                            CornerRadius="3" 
+                            CornerRadius="0" 
                             BorderBrush="#FFFF9700">
                         <ScrollViewer Focusable="false" Padding="{TemplateBinding Padding}" Foreground="{DynamicResource DefaultText}">
                             <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>

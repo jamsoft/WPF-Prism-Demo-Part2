@@ -18,7 +18,7 @@
                             x:Name="Bd" 
                             BorderThickness="{TemplateBinding BorderThickness}" 
                             BorderBrush="#FFFFA500" 
-                            CornerRadius="3,3,3,3" 
+                            CornerRadius="0" 
                             ClipToBounds="True">
                         <ScrollViewer SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" x:Name="PART_ContentHost"/>
                     </Border>

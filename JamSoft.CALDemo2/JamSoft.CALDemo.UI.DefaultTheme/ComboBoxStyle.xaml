@@ -10,8 +10,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBox}">
                     <Grid>
-                        <ToggleButton Grid.Column="2" 
-                                      Template="{DynamicResource ToggleButtonControlTemplate}" 
+                        <ToggleButton Template="{DynamicResource ToggleButtonControlTemplate}" 
                                       x:Name="ToggleButton" 
                                       Focusable="false" 
                                       IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" 
@@ -50,7 +49,7 @@
                                         Background="{DynamicResource AppBackground}" 
                                         BorderBrush="{DynamicResource MainAppColour}" 
                                         BorderThickness="1" 
-                                        CornerRadius="3" 
+                                        CornerRadius="0" 
                                         Margin="0,2,0,0"/>
                                 <ScrollViewer Margin="4,6,4,6" 
                                               Style="{DynamicResource JamSoftScrollViewer}" 
@@ -103,8 +102,8 @@
                        VerticalAlignment="Stretch" 
                        Width="Auto" 
                        Height="Auto" 
-                       RadiusX="3" 
-                       RadiusY="3" 
+                       RadiusX="0" 
+                       RadiusY="0" 
                        Fill="{DynamicResource MainAppColour}" 
                        Stroke="Black" 
                        SnapsToDevicePixels="True"/>
@@ -113,8 +112,8 @@
                        VerticalAlignment="Stretch" 
                        Width="Auto" 
                        Height="Auto" 
-                       RadiusX="3" 
-                       RadiusY="3" 
+                       RadiusX="0" 
+                       RadiusY="0" 
                        Fill="{DynamicResource AppBackground}" 
                        Stroke="{DynamicResource MainAppColour}" 
                        Margin="2,2,0,2" 
@@ -131,8 +130,6 @@
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Fill" TargetName="Arrow" Value="{DynamicResource MainAppColour}"/>
                 <Setter Property="Fill" TargetName="Rectangle" Value="Black"/>
-                <Setter Property="RadiusX" TargetName="Rectangle" Value="3"/>
-                <Setter Property="RadiusY" TargetName="Rectangle" Value="3"/>
                 <Setter Property="Margin" TargetName="rectangle" Value="1,1,0,1"/>
                 <Setter Property="Stroke" TargetName="Rectangle" Value="{DynamicResource MainAppColour}"/>
             </Trigger>
@@ -140,8 +137,6 @@
                 <Setter Property="Margin" TargetName="rectangle" Value="2,2,0,2"/>
                 <Setter Property="Fill" TargetName="Rectangle" Value="{DynamicResource DefaultGradient}"/>
                 <Setter Property="SnapsToDevicePixels" TargetName="Rectangle" Value="True"/>
-                <Setter Property="RadiusX" TargetName="Rectangle" Value="3"/>
-                <Setter Property="RadiusY" TargetName="Rectangle" Value="3"/>
                 <Setter Property="Margin" TargetName="Rectangle" Value="0,0,0,0"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
@@ -150,8 +145,6 @@
                 <Setter Property="Fill" TargetName="Rectangle" Value="{DynamicResource DefaultGradient}"/>
                 <Setter Property="Opacity" TargetName="Rectangle" Value="0.7"/>
                 <Setter Property="Stroke" TargetName="Rectangle" Value="{DynamicResource Black}"/>
-                <Setter Property="RadiusX" TargetName="Rectangle" Value="3"/>
-                <Setter Property="RadiusY" TargetName="Rectangle" Value="3"/>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>

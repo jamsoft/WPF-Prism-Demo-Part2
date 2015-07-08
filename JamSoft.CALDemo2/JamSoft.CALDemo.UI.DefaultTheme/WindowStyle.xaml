@@ -3,7 +3,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
 	<Style x:Key="JamSoftWindowStyle" TargetType="{x:Type Window}">
-        <Setter Property="Title" Value="JamSoft Composite Application Library Demo" />
+        <Setter Property="Title" Value="JamSoft Microsoft Prism (CAL) Demo - Default Theme" />
         <Setter Property="Foreground" Value="Transparent" />
 		<Setter Property="Background" Value="Transparent" />
         <Setter Property="ResizeMode" Value="NoResize" />
@@ -13,10 +13,10 @@
 				<ControlTemplate TargetType="{x:Type Window}">
 					<Border Background="{DynamicResource AppBackground}" 
                             BorderBrush="{DynamicResource MainAppColour}" 
-                            BorderThickness="2" 
+                            BorderThickness="1" 
                             SnapsToDevicePixels="True" 
                             ClipToBounds="True" 
-                            CornerRadius="5">
+                            CornerRadius="0">
 						<AdornerDecorator>
 							<ContentPresenter/>
 						</AdornerDecorator>
