@@ -17,29 +17,36 @@
                  Background="Transparent" 
                  ItemContainerStyle="{DynamicResource NavListBoxItemStyle}"
                  BorderThickness="0"
-                 VerticalAlignment="Stretch" 
+                 VerticalAlignment="Stretch"
                  SelectionChanged="TheListViewSelectionChanged"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                  BorderBrush="{x:Null}" >
-            
+
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal" />
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
             
+            <ListBox.Resources>
+                <!-- These settings simply hide the default highlight colours of selected items in the listbox -->
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent"/>
+            </ListBox.Resources>
+            
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border x:Name="bdr"
                             SnapsToDevicePixels="True"
                             Width="100" 
-                            Height="25"
-                            CornerRadius="3" 
+                            Height="28"
+                            CornerRadius="0" 
                             Padding="4"
                             Margin="2,4,0,0"
                             BorderBrush="{DynamicResource NavigatorButtonBorder}"
                             Background="{DynamicResource NavigatorButtonUnselectedBackground}"
-                            BorderThickness="2">
+                            BorderThickness="1"
+                            FocusVisualStyle="{x:Null}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="12"/>
@@ -54,11 +61,11 @@
                                      VerticalAlignment="Center" 
                                      Margin="0,1,2,0" 
                                      ClipToBounds="True" 
-                                     StrokeThickness="2"/>
+                                     StrokeThickness="1"/>
                             <TextBlock x:Name="navText" 
-                                       FontWeight="UltraBold" 
                                        Foreground="{DynamicResource NavigatorButtonText}" 
-                                       Grid.Column="1" 
+                                       Grid.Column="1"
+                                       FontWeight="Bold"
                                        HorizontalAlignment="Center" 
                                        Text="{Binding Path=ID}" 
                                        Margin="0,0,5,0" />
@@ -79,7 +86,7 @@
                     </DataTemplate.Triggers>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-            
+
         </ListBox>
         
     </Grid>

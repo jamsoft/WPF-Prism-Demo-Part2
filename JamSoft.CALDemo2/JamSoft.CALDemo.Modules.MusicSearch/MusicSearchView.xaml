@@ -10,7 +10,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="110" />
+            <RowDefinition Height="120" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
@@ -55,7 +55,7 @@
                      Grid.Row="1" />
         </Grid>
         
-        <StackPanel Grid.Row="0" 
+        <StackPanel Grid.Row="0"
                     HorizontalAlignment="Left" 
                     Grid.Column="1" >
             
