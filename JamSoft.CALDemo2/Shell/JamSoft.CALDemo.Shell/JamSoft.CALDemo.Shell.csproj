@@ -195,9 +195,8 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>REM copy "$(TargetPath)" "$(SolutionDir)..\$(OutDir)"
-REM copy "$(TargetPath).config" "$(SolutionDir)..\$(OutDir)"
-REM copy "$(TargetDir)*.dll" "$(SolutionDir)..\$(OutDir)External\"
+    <PostBuildEvent>mkdir "$(SolutionDir)$(OutDir)External\"
+mkdir "$(SolutionDir)$(OutDir)Modules\"
 
 copy "$(TargetPath)" "$(SolutionDir)$(OutDir)"
 copy "$(TargetPath).config" "$(SolutionDir)$(OutDir)"

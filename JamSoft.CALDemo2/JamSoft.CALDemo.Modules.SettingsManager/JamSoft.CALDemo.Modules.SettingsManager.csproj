@@ -186,8 +186,7 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>REM copy "$(TargetPath)" "$(SolutionDir)..\$(OutDir)Modules\"
-
+    <PostBuildEvent>mkdir "$(SolutionDir)$(OutDir)Modules\"
 copy "$(TargetPath)" "$(SolutionDir)$(OutDir)Modules\"</PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

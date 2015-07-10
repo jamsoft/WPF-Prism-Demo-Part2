@@ -154,9 +154,8 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>REM copy "$(TargetPath)" "$(SolutionDir)..\$(OutDir)Internal\"
-REM copy "$(TargetPath)" "$(SolutionDir)..\Int\"
-
+    <PostBuildEvent>mkdir "$(SolutionDir)$(OutDir)Internal\"
+mkdir "$(SolutionDir)Int\"
 copy "$(TargetPath)" "$(SolutionDir)$(OutDir)Internal\"
 copy "$(TargetPath)" "$(SolutionDir)Int\"</PostBuildEvent>
   </PropertyGroup>

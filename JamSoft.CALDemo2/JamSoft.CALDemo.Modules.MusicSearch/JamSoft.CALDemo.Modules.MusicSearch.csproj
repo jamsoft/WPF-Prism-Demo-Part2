@@ -202,9 +202,8 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>REM copy "$(TargetPath)" "$(SolutionDir)..\$(OutDir)Modules\"
-REM copy "$(TargetDir)MusicBrainz.dll" "$(SolutionDir)..\$(OutDir)External\"
-
+    <PostBuildEvent>mkdir "$(SolutionDir)$(OutDir)Modules\"
+mkdir "$(SolutionDir)$(OutDir)External\"
 copy "$(TargetPath)" "$(SolutionDir)$(OutDir)Modules\"
 copy "$(TargetDir)MusicBrainz.dll" "$(SolutionDir)$(OutDir)External\"</PostBuildEvent>
   </PropertyGroup>

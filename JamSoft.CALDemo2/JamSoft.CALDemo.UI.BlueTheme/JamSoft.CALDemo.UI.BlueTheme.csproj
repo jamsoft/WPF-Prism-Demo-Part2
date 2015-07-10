@@ -223,9 +223,8 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>REM copy "$(TargetPath)" "$(SolutionDir)..\$(OutDir)Skins\"
-REM copy "$(TargetPath)" "$(SolutionDir)..\Skins\"
-
+    <PostBuildEvent>mkdir "$(SolutionDir)$(OutDir)Skins\"
+mkdir "$(SolutionDir)Skins\"
 copy "$(TargetPath)" "$(SolutionDir)$(OutDir)Skins\"
 copy "$(TargetPath)" "$(SolutionDir)Skins\"</PostBuildEvent>
   </PropertyGroup>
